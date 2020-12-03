@@ -1,0 +1,11 @@
+
+@import "@aposin/ng-aquila/styles/theming";
+
+$cookiez-theme: (
+    // =============== GENERAL
+      ui-background: #5a6175,
+      ui-02: #252422,
+    // ===============
+);
+
+$nx-themes: nx-register-theme($cookiez-theme, cookiez-theme);
