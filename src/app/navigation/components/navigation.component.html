@@ -1,0 +1,25 @@
+<nx-sidebar
+  #sidebar
+  class="cookiez-navigation"
+  resizeable="false">
+  <button
+      class="cookiez-navigation__actions"
+      *ngFor="let action of actions"
+      nxAction
+      routerLink="./"
+      type="button">
+    <nx-icon
+      nxActionIcon
+      [name]="action.icon">
+    </nx-icon>
+    {{action.label}}
+  </button>
+
+  <nx-sidebar-footer>
+    <button
+      nxSidebarToggle
+      aria-label="Toggle sidebar"
+      type="button">
+    </button>
+  </nx-sidebar-footer>
+</nx-sidebar>

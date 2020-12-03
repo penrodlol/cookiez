@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppStartupService } from './app-startup.service';
+import { NavigationModule } from './navigation/navigation.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AppStartupService } from './app-startup.service';
     HttpClientModule,
     AppRoutingModule,
     FlexLayoutModule,
+    NavigationModule
   ],
   providers: [
     AppStartupService,
