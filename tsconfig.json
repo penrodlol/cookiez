@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "paths": {
       "@icon-registry/*": ["src/app/icon-registry/*"],
+      "@home/*": ["src/app/home/*"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
