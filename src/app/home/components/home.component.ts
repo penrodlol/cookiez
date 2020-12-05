@@ -1,55 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { Headers } from '@home/enums/headers.enum';
+import { Component } from '@angular/core';
+import { StubService } from 'src/app/stub/stub.service';
+
+export interface IHeader { name: string; size: number; }
 
 @Component({
   selector: 'cookiez-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-   headers: string[] = Object.values(Headers);
+export class HomeComponent {
+   readonly headers: ReadonlyArray<IHeader> = [
+      { name: 'Environment', size: 30 },
+      { name: 'Type', size: 30 },
+      { name: 'Snippet', size: 40 },
+   ];
 
-  tableElements = [
-    {
-       product: 'Car',
-       contractNumber: 1234,
-       desc: 'this is a contract',
-       website: 'www.example.com',
-       endingAt: '1/3/2020',
-       status: 'negative',
-       statusText: 'open'
-    },
-    {
-       product: 'Health',
-       contractNumber: 2423,
-       desc: 'this is another contract',
-       website: 'www.aposin.org',
-       endingAt: '4/2/2020',
-       status: 'active',
-       statusText: 'accepted'
-    },
-    {
-       product: 'Car',
-       contractNumber: 353455,
-       desc: 'Lorem ipsum dolor sit amet, csis libero. ',
-       website: 'www.example.com',
-       endingAt: '6/2/2020',
-       status: 'positive',
-       statusText: 'accepted'
-    },
-    {
-       product: 'Home',
-       contractNumber: 22344,
-       desc: 'this is a description of a contract',
-       website: 'www.example.org',
-       endingAt: '1/2/2027',
-       status: 'critical',
-       statusText: 'rejected'
-    }
-  ];
-  constructor() { }
+   readonly data$ = this.stubService.data$;
+   readonly page$ = this.stubService.page$;
+   readonly total$ = this.stubService.total$;
 
-  ngOnInit(): void {
-  }
+  constructor(private stubService: StubService) { }
+
+  nextPage = () => this.stubService.update({ nextPage: true });
+  prevPage = () => this.stubService.update({ nextPage: true });
+  goToPage = (specificPage: number) => this.stubService.update({ specificPage });
 
 }

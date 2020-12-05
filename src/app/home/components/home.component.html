@@ -1,45 +1,37 @@
-<!-- <table nxTable>
+<table
+  nxTable
+  aria-hidden="true">
   <thead>
-    <tr nxTableRow>
-      <th nxHeaderCell>
-        Product
-      </th>
-      <th nxHeaderCell>
-        Contract Number
-      </th>
-      <th nxHeaderCell>
-        Description
-      </th>
-      <th nxHeaderCell>
-        Website
-      </th>
-      <th nxHeaderCell>
-        Ending At
-      </th>
-      <th nxHeaderCell>
-        Status
+    <tr
+      nxTableRow
+      fxLayout="row">
+      <th
+        *ngFor="let header of headers"
+        nxHeaderCell
+        scope="col"
+        [fxFlex]="header.size">
+        {{header.name}}
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr nxTableRow *ngFor="let item of tableElements">
-      <td nxTableCell>{{item.product}}</td>
-      <td nxTableCell>{{item.contractNumber}}</td>
-      <td nxTableCell>{{item.desc}}</td>
-      <td nxTableCell>
-        <nx-link><a routerLink='#'>{{item.website}}</a></nx-link>
-      </td>
-      <td nxTableCell>{{item.endingAt}}</td>
-      <td nxTableCell><nx-badge [type]="item.status">{{item.statusText}}</nx-badge></td>
-    </tr>
+    <ng-container *ngFor="let item of (data$ | async)">
+      <tr nxTableRow>
+        <td nxTableCell fxFlex="30">{{item.environment | uppercase}}</td>
+        <td nxTableCell fxFlex="30">{{item.type | uppercase}}</td>
+        <td nxTableCell fxFlex="40">SNIPPETS</td>
+      </tr>
+    </ng-container>
   </tbody>
-</table> -->
-
-<table nxTable>
-  <thead>
-    <tr nxTableRow>
-      <!-- <th ngfor></th> -->
-    </tr>
-  </thead>
-  <tbody></tbody>
 </table>
+
+<nx-pagination
+  class="pagination"
+  [nxCount]="(total$ | async)"
+  [nxPage]="(page$ | async)"
+  nxType="advanced"
+  nxPerPage="20"
+  (nxGoPrev)="prevPage()"
+  (nxGoNext)="nextPage()"
+  (nxGoPage)="goToPage($event)">
+</nx-pagination>
