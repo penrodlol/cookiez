@@ -1,0 +1,8 @@
+[class*='nx-icon'] { color: var(--ui-04) !important; }
+
+.nx {
+  &-sidebar__footer-container >
+  button:active svg {
+    color: black !important;
+  }
+}
