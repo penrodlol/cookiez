@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { NxTableModule } from '@aposin/ng-aquila/table';
 import { NxPaginationModule } from '@aposin/ng-aquila/pagination';
@@ -23,6 +24,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FlexLayoutModule,
+    ClipboardModule,
     NxTableModule,
     NxPaginationModule,
     NxTooltipModule,

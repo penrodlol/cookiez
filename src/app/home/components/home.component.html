@@ -47,7 +47,9 @@
             <section
               nxTooltip="Copy to Clipboard"
               nxTooltipPosition="left"
-              [line-truncation]="2">
+              [line-truncation]="2"
+              [cdkCopyToClipboard]="item.snippet"
+              (click)="copiedToClipboard()">
               {{item.snippet}}
             </section>
           </div>
