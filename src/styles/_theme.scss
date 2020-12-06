@@ -2,12 +2,20 @@
 
 $cookiez-theme: (
     // =============== GENERAL
+      ui-01: #363537,
       ui-02: #252422,
       ui-03: #1d1c1b9f,
       ui-04: #34ebb4,
-      ui-background: #363537,
+      // ui-05: ...
+      ui-06: #c5c5c5,
+      ui-background: var(--ui-01),
       hover-primary: var(--ui-03),
       hover-secondary: var(--ui-03),
+    // ===============
+
+    // =============== TABLE
+    table-header-cell-background-color: var(--ui-02),
+    table-row-background-color: var(--ui-03),
     // ===============
 );
 

@@ -3,6 +3,7 @@
 @import "@aposin/ng-aquila/css/utilities.css";
 @import 'theme';
 @import 'aquila-overrides';
+@import 'other';
 
 @include nx-build-theme(cookiez-theme);
 

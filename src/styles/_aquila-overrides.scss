@@ -1,8 +1,30 @@
 [class*='nx-icon'] { color: var(--ui-04) !important; }
 
 .nx {
-  &-sidebar__footer-container >
-  button:active svg {
-    color: black !important;
+  &-sidebar {
+    &__footer-container {
+      & > button:active svg { color: black !important; }
+    }
+  }
+
+  $table-padding: 40px !important;
+
+  &-table {
+    border-left: solid 2px var(--ui-06) !important;
+    border-right: solid 2px var(--ui-06) !important;
+    box-shadow: var(--elevation) !important;
+
+    &-cell {
+      &:first-child { padding-left: $table-padding; }
+      &:last-child { padding-right: $table-padding; }
+    }
+  }
+
+  &-header {
+    &-cell {
+      border-width: 2px !important;
+      &:first-child { padding-left: $table-padding; }
+      &:last-child { padding-right: $table-padding; }
+    }
   }
 }
