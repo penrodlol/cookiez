@@ -47,8 +47,7 @@
             <section
               nxTooltip="Copy to Clipboard"
               nxTooltipPosition="left"
-              [line-truncation]="2" 
-              style="font-size: var(--font-xs); margin: 10px;">
+              [line-truncation]="2">
               {{item.snippet}}
             </section>
           </div>
@@ -63,8 +62,11 @@
       <tr
         nxExpandableTableRow
         #expandableRow>
-        <td nxExpandableTableCell>
-          <pre [style.white-space]="'pre-wrap'">
+        <td
+          nxExpandableTableCell
+          fxFlex="100"
+          [style.padding-left.px]=50>
+          <pre [style.white-space]="'pre-line'">
             {{item.snippet}}
           </pre>
         </td>
