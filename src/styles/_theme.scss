@@ -6,7 +6,7 @@ $cookiez-theme: (
       ui-02: #252422,
       ui-03: #1d1c1b9f,
       ui-04: #34ebb4,
-      // ui-05: ...
+      ui-05: #a0a0a0,
       ui-06: #c5c5c5,
       ui-background: var(--ui-01),
       hover-primary: var(--ui-03),
@@ -15,8 +15,9 @@ $cookiez-theme: (
     // ===============
 
     // =============== TABLE
-    table-header-cell-background-color: var(--ui-02),
-    table-row-background-color: var(--ui-03),
+      table-header-cell-background-color: var(--ui-02),
+      table-row-background-color: var(--ui-03),
+      pagination-link-color: var(--ui-05),
     // ===============
 );
 
