@@ -1,0 +1,13 @@
+.home {
+  display: grid;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+
+  &__snippet {
+    height: 50px;
+    background-color: var(--ui-01);
+    border-radius: 10px;
+    box-shadow: var(--elevation);
+    cursor: pointer;
+  }
+}

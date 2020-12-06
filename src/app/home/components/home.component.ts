@@ -10,7 +10,7 @@ export interface IHeader { name: string; size: number; }
 })
 export class HomeComponent {
    readonly headers: ReadonlyArray<IHeader> = [
-      { name: 'Environment', size: 30 },
+      { name: 'Environment', size: 25 },
       { name: 'Type', size: 30 },
       { name: 'Snippet', size: 40 },
    ];
@@ -22,7 +22,7 @@ export class HomeComponent {
   constructor(private stubService: StubService) { }
 
   nextPage = () => this.stubService.update({ nextPage: true });
-  prevPage = () => this.stubService.update({ nextPage: true });
+  prevPage = () => this.stubService.update({ nextPage: false });
   goToPage = (specificPage: number) => this.stubService.update({ specificPage });
 
 }

@@ -1,6 +1,9 @@
 <table
+  class="home"
+  aria-hidden="true"
   nxTable
-  aria-hidden="true">
+  nxExpandableTable
+  #expandableTable="nxExpandableTable">
   <thead>
     <tr
       nxTableRow
@@ -9,17 +12,62 @@
         *ngFor="let header of headers"
         nxHeaderCell
         scope="col"
-        [fxFlex]="header.size">
+        [fxFlex]="header.size"
+        [style.font-size]="'var(--font-l)'">
         {{header.name}}
       </th>
+      <th
+        nxHeaderCell
+        scope="col"
+        fxFlex="5"
+        fxLayoutAlign="center center">
+      <nx-toggle-button [target]="expandableTable"></nx-toggle-button>
+    </th>
     </tr>
   </thead>
   <tbody>
     <ng-container *ngFor="let item of (data$ | async)">
       <tr nxTableRow>
-        <td nxTableCell fxFlex="30">{{item.environment | uppercase}}</td>
-        <td nxTableCell fxFlex="30">{{item.type | uppercase}}</td>
-        <td nxTableCell fxFlex="40">SNIPPETS</td>
+        <td
+          nxTableCell
+          fxFlex="25"
+          fxLayoutAlign="start center">
+          {{item.environment | uppercase}}
+        </td>
+        <td
+          nxTableCell
+          fxFlex="30"
+          fxLayoutAlign="start center">
+          {{item.type | uppercase}}
+        </td>
+        <td
+          nxTableCell
+          fxFlex="40">
+          <div class="home__snippet">
+            <section
+              nxTooltip="Copy to Clipboard"
+              nxTooltipPosition="left"
+              [line-truncation]="2" 
+              style="font-size: var(--font-xs); margin: 10px;">
+              {{item.snippet}}
+            </section>
+          </div>
+        </td>
+        <td
+          nxTableCell
+          fxFlex="5"
+          fxLayoutAlign="center center">
+          <nx-toggle-button [target]="expandableRow"></nx-toggle-button>
+        </td>
+      </tr>
+      <tr
+        nxExpandableTableRow
+        #expandableRow>
+        <td nxExpandableTableCell>
+          <pre [style.white-space]="'pre-wrap'">
+            {{item.snippet}}
+          </pre>
+        </td>
       </tr>
     </ng-container>
   </tbody>
@@ -27,10 +75,11 @@
 
 <nx-pagination
   class="pagination"
-  [nxCount]="(total$ | async)"
-  [nxPage]="(page$ | async)"
   nxType="advanced"
   nxPerPage="20"
+  fxLayoutAlign="end center" 
+  [nxCount]="(total$ | async)"
+  [nxPage]="(page$ | async)"
   (nxGoPrev)="prevPage()"
   (nxGoNext)="nextPage()"
   (nxGoPage)="goToPage($event)">
