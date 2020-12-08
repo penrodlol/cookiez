@@ -25,11 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/_redirects"
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@aposin/ng-aquila/css/normalize.css",
+              "node_modules/@aposin/ng-aquila/css/normalize.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -128,6 +129,14 @@
             "production": {
               "devServerTarget": "cookiez:serve:production"
             }
+          }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/cookiez",
+            "netlifyToken": "5cGfXaf7MXPhtbvgggQG3saUmXDtFY1tGpss15sJ2I",
+            "siteId": "75695229-9ad4-47f9-8ea6-ee98184f48e0"
           }
         }
       }
