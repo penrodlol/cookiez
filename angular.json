@@ -39,6 +39,10 @@
             },
             "scripts": [
               "node_modules/what-input/dist/what-input.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "graphql-tag",
+              "zen-observable"
             ]
           },
           "configurations": {
