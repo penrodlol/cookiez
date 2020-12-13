@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppStartupService } from './app-startup.service';
 import { NavigationModule } from './navigation/navigation.module';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavigationModule } from './navigation/navigation.module';
     HttpClientModule,
     AppRoutingModule,
     FlexLayoutModule,
-    NavigationModule
+    NavigationModule,
+    GraphQLModule
   ],
   providers: [
     AppStartupService,

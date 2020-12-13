@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
-import { StubService } from 'src/app/stub/stub.service';
+import { AppState } from 'src/app/app.state';
 
 export interface IHeader { name: string; size: number; }
 
@@ -9,25 +9,25 @@ export interface IHeader { name: string; size: number; }
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-   readonly headers: ReadonlyArray<IHeader> = [
-      { name: 'Environment', size: 25 },
-      { name: 'Type', size: 30 },
-      { name: 'Snippet', size: 40 },
-   ];
+export class HomeComponent implements OnInit {
+  readonly headers: ReadonlyArray<IHeader> = [
+     { name: 'Environment', size: 25 },
+     { name: 'Type', size: 30 },
+     { name: 'Snippet', size: 40 },
+  ];
 
-   readonly data$ = this.stubService.data$;
-   readonly page$ = this.stubService.page$;
-   readonly total$ = this.stubService.total$;
+  readonly state$ = this.appState.state$;
 
   constructor(
-    private stubService: StubService,
     private toastService: NxMessageToastService,
+    private appState: AppState,
   ) { }
 
-  nextPage = () => this.stubService.update({ nextPage: true });
-  prevPage = () => this.stubService.update({ nextPage: false });
-  goToPage = (specificPage: number) => this.stubService.update({ specificPage });
+  ngOnInit(): void { this.appState.fetch({ initial: true }); }
+
+  nextPage = () => this.appState.fetch({ nextPage: true });
+  prevPage = () => this.appState.fetch({ nextPage: false });
+  goToPage = (specificPage: number) => this.appState.fetch({ specificPage });
 
   copiedToClipboard = () => this.toastService.open('Copied to Clipboard!', {
     context: 'success',
