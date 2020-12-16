@@ -1,4 +1,4 @@
-<ng-container *ngIf="(state$ | async) as state">
+<ng-container *ngIf="(pagination$ | async) as pagination">
   <table
     class="home"
     aria-hidden="true"
@@ -27,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let item of state.collection">
+      <ng-container *ngFor="let item of pagination.collection">
         <tr nxTableRow>
           <td
             nxTableCell
@@ -83,8 +83,8 @@
     nxType="advanced"
     nxPerPage="20"
     fxLayoutAlign="end center" 
-    [nxCount]="state.total"
-    [nxPage]="state.page"
+    [nxCount]="pagination.total"
+    [nxPage]="pagination.page"
     (nxGoPrev)="prevPage()"
     (nxGoNext)="nextPage()"
     (nxGoPage)="goToPage($event)">

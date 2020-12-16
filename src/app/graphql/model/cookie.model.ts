@@ -1,4 +1,4 @@
-export interface ICookie {
+export interface Cookie {
   id: string;
   environment: string;
   type: string;

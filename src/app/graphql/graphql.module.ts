@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
-import { environment } from '../environments/environment';
-import { cookiezState } from './app.state';
+import { environment } from '../../environments/environment';
+import { cookiesPaginationVar } from '@home/graphql/var/cookies-pagination.var';
 
 export function createApollo(
   httpLink: HttpLink
@@ -17,7 +17,7 @@ export function createApollo(
     typePolicies: {
       Query: {
         fields: {
-          state: { read: () => cookiezState() }
+          cookiesPaginationVar: { read: () => cookiesPaginationVar(), }
         }
       }
     }

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { ICookie } from '../../model/cookie.model';
+import { Cookie } from 'src/app/graphql/model/cookie.model';
 
-type GetCookiezResponse = { cookies: ICookie[] };
+export type CookiesCacheResponse = { cookies: Cookie[] };
 
 @Injectable({ providedIn: 'root' })
-export class GetCookiezGQL extends Query<GetCookiezResponse> {
+export class CookiesCacheGQL extends Query<CookiesCacheResponse> {
   document = gql`
-    query GetCookiez {
-      cookies {
+    query CookiesCache {
+      cookies @client {
         id
         environment
         type

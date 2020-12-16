@@ -7,7 +7,7 @@
         "src/app/icon-registry/*"
       ],
       "@home/*": [
-        "src/app/home/*"
+        "src/app/feature/home/*"
       ]
     },
     "outDir": "./dist/out-tsc",

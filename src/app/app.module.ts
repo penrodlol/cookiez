@@ -7,8 +7,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppStartupService } from './app-startup.service';
-import { NavigationModule } from './navigation/navigation.module';
-import { GraphQLModule } from './graphql.module';
+import { NavigationModule } from './feature/navigation/navigation.module';
+import { GraphQLModule } from './graphql/graphql.module';
 
 @NgModule({
   declarations: [
