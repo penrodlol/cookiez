@@ -1,0 +1,37 @@
+<div
+  class="configuration"
+  nxModalContent
+  fxLayout="column"
+  fxLayoutGap="30px">
+  <h1 nxHeadline="subsection-large">
+    Configuration
+  </h1>
+  <div
+    fxLayout="row"
+    fxLayoutGap="30px">
+    <div fxFlex="25">
+      <cookiez-configuration-table-column
+        header="Environments"
+        [environments]="(environmentsAndTypes$ | async)?.environments">
+      </cookiez-configuration-table-column>
+    </div>
+    <div fxFlex="25">
+      <cookiez-configuration-table-column
+        header="Types"
+        [types]="(environmentsAndTypes$ | async)?.types">
+      </cookiez-configuration-table-column>
+    </div>
+    <div fxFlex>
+
+    </div>
+  </div>
+</div>
+<div nxModalActions>
+  <button
+    class="nx-margin-bottom-0"
+    nxModalClose="Close"
+    nxButton="small"
+    type="button">
+    Close
+  </button>
+</div>

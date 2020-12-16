@@ -4,6 +4,7 @@ import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { environment } from '../../environments/environment';
 import { cookiesPaginationVar } from '@home/graphql/var/cookies-pagination.var';
+import { environmentsAndTypesVar } from '../feature/configuration/graphql/var/environments-and-types.var';
 
 export function createApollo(
   httpLink: HttpLink
@@ -17,7 +18,8 @@ export function createApollo(
     typePolicies: {
       Query: {
         fields: {
-          cookiesPaginationVar: { read: () => cookiesPaginationVar(), }
+          cookiesPaginationVar: { read: () => cookiesPaginationVar() },
+          environmentsAndTypesVar: { read: () => environmentsAndTypesVar() }
         }
       }
     }

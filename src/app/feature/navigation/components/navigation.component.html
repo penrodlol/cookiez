@@ -17,6 +17,15 @@
 
   <nx-sidebar-footer>
     <button
+        nxIconButton="tertiary small-medium" 
+        aria-label="Open settings"
+        nxTooltip="Open settings"
+        class="nx-margin-0"
+        type="button"
+        (click)="onConfiguration()">
+      <nx-icon name="cog"></nx-icon>
+    </button>
+    <button
       nxSidebarToggle
       aria-label="Toggle sidebar"
       type="button">

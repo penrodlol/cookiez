@@ -11,6 +11,7 @@ $cookiez-theme: (
       ui-background: var(--ui-01),
       hover-primary: var(--ui-03),
       hover-secondary: var(--ui-03),
+      interactive-primary: var(--ui-04),
       success: var(--ui-04),
     // ===============
 
@@ -18,6 +19,10 @@ $cookiez-theme: (
       table-header-cell-background-color: var(--ui-02),
       table-row-background-color: var(--ui-03),
       pagination-link-color: var(--ui-05),
+    // ===============
+
+    // =============== MODAL
+      modal-background-color: var(--ui-01),
     // ===============
 );
 

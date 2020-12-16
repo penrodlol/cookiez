@@ -1,0 +1,38 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { NxModalModule } from '@aposin/ng-aquila/modal';
+import { NxButtonModule } from '@aposin/ng-aquila/button';
+import { NxIconModule } from '@aposin/ng-aquila/icon';
+import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
+import { NxDropdownModule } from '@aposin/ng-aquila/dropdown';
+import { NxInputModule } from '@aposin/ng-aquila/input';
+
+import { ConfigurationComponent } from './components/configuration.component';
+import { ConfigurationTableColumnComponent } from './components/configuration-table-column/configuration-table-column.component';
+
+
+
+@NgModule({
+  declarations: [
+    ConfigurationComponent,
+    ConfigurationTableColumnComponent,
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    NxModalModule,
+    NxButtonModule,
+    NxIconModule,
+    NxFormfieldModule,
+    NxDropdownModule,
+    NxInputModule,
+  ],
+  exports: [
+    ConfigurationComponent,
+  ],
+})
+export class ConfigurationModule { }
