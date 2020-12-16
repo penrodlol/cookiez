@@ -10,8 +10,7 @@ import { Type } from 'src/app/graphql/model/type.model';
 })
 export class ConfigurationTableColumnComponent implements OnInit {
   @Input() header: string;
-  @Input() environments: Environment[] | null;
-  @Input() types: Type[] | null;
+  @Input() configuration: Environment[] | Type[];
 
   constructor() { }
 

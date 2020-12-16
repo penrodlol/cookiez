@@ -5,4 +5,18 @@
   <h2 nxHeadline="subsection-large">
     {{header}}
   </h2>
+  <div
+    class="configuration-table-column__content"
+    fxLayout="row">
+    <div
+      fxLayout="column"
+      fxFill>
+      <ng-container *ngFor="let entity of configuration">
+        <cookiez-configuration-table-column-row
+          [entity]="entity">
+        </cookiez-configuration-table-column-row>
+        <hr class="configuration-table-column__content--separator">
+      </ng-container>
+    </div>
+  </div>
 </div>

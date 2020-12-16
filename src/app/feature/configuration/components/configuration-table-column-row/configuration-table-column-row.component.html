@@ -1,0 +1,49 @@
+<div
+  class="nx-margin-y-2xs"
+  fxLayout="row"
+  fxLayoutGap="20"
+  fxFill>
+  <div fxFlex="30">
+    <section
+      fxLayout="row"
+      fxLayoutGap="10px">
+      <button
+        nxIconButton="tertiary small" 
+        aria-label="Toggle Edit"
+        class="nx-margin-0"
+        type="button"
+        (click)="onEditToggle()">
+        <nx-icon [name]="editing ? 'x' : 'edit'"></nx-icon>
+      </button>
+      <button
+        nxIconButton="tertiary small" 
+        aria-label="Save or Delete"
+        class="nx-margin-0"
+        type="button">
+        <nx-icon [name]="editing ? 'tick' : 'bin'"></nx-icon>
+      </button>
+    </section>
+  </div>
+  <div
+    fxFlex
+    fxLayoutAlign="start center">
+    <ng-container *ngIf="editing; else showStaticName">
+      <form [formGroup]="form">
+        <nx-formfield
+          class="nx-margin-0"
+          appearance="outline">
+          <input
+            nxInput 
+            formControlName="name"/>
+          </nx-formfield>
+      </form>
+    </ng-container>
+    <ng-template #showStaticName>
+      <h3
+        class="nx-margin-0"
+        nxHeadline="subsection-small">
+        {{entity.name}}
+      </h3>
+    </ng-template>
+  </div>
+</div>

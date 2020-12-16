@@ -12,6 +12,7 @@ import { NxInputModule } from '@aposin/ng-aquila/input';
 
 import { ConfigurationComponent } from './components/configuration.component';
 import { ConfigurationTableColumnComponent } from './components/configuration-table-column/configuration-table-column.component';
+import { ConfigurationTableColumnRowComponent } from './components/configuration-table-column-row/configuration-table-column-row.component';
 
 
 
@@ -19,6 +20,7 @@ import { ConfigurationTableColumnComponent } from './components/configuration-ta
   declarations: [
     ConfigurationComponent,
     ConfigurationTableColumnComponent,
+    ConfigurationTableColumnRowComponent,
   ],
   imports: [
     CommonModule,

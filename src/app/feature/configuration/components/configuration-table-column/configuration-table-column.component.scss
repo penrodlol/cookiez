@@ -1,0 +1,13 @@
+.configuration-table-column {
+  &__content {
+    background-color: var(--ui-03);
+    box-shadow: var(--elevation);
+    border-radius: 4px;
+    padding: 15px;
+
+    &--separator {
+      width: 90%;
+      border-top: 1px solid var(--ui-05);
+    }
+  }
+}

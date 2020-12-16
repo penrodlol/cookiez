@@ -1,24 +1,24 @@
 <div
-  class="configuration"
   nxModalContent
   fxLayout="column"
-  fxLayoutGap="30px">
+  fxLayoutGap="30px"
+  [style.padding-bottom.px]=30>
   <h1 nxHeadline="subsection-large">
     Configuration
   </h1>
   <div
     fxLayout="row"
-    fxLayoutGap="30px">
+    fxLayoutGap="50px">
     <div fxFlex="25">
       <cookiez-configuration-table-column
         header="Environments"
-        [environments]="(environmentsAndTypes$ | async)?.environments">
+        [configuration]="(environmentsAndTypes$ | async)?.environments">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex="25">
       <cookiez-configuration-table-column
         header="Types"
-        [types]="(environmentsAndTypes$ | async)?.types">
+        [configuration]="(environmentsAndTypes$ | async)?.types">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex>
