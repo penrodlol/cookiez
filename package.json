@@ -2,7 +2,8 @@
   "name": "cookiez",
   "version": "0.0.0",
   "scripts": {
-    "build_prod": "ng build --prod"
+    "build:dev": "ng build",
+    "build:prod": "ng build --prod"
   },
   "private": true,
   "dependencies": {
