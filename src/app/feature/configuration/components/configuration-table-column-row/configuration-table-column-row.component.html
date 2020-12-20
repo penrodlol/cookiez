@@ -13,23 +13,23 @@
         class="nx-margin-0"
         type="button"
         (click)="onEditToggle()">
-        <nx-icon [name]="editing ? 'x' : 'edit'"></nx-icon>
+        <nx-icon [name]="editing || !entity.id ? 'x' : 'edit'"></nx-icon>
       </button>
       <button
         nxIconButton="tertiary small" 
         aria-label="Save or Delete"
         class="nx-margin-0"
         type="submit"
-        [disabled]="editing && form.invalid"
-        (click)="editing ? onSave() : onDelete()">
-        <nx-icon [name]="editing ? 'tick' : 'bin'"></nx-icon>
+        [disabled]="(editing || !entity.id) && form.invalid"
+        (click)="editing || !entity.id ? onSave() : onDelete()">
+        <nx-icon [name]="editing || !entity.id ? 'tick' : 'bin'"></nx-icon>
       </button>
     </section>
   </div>
   <div
     fxFlex
     fxLayoutAlign="start center">
-    <ng-container *ngIf="editing; else showStaticName">
+    <ng-container *ngIf="editing || !entity.id; else showStaticName">
       <form [formGroup]="form">
         <nx-formfield
           class="nx-margin-0"

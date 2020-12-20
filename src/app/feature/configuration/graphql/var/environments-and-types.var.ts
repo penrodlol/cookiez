@@ -10,6 +10,8 @@ import { EnvironmentsAndTypesVarGQL } from '../query/environments-and-types-var.
 import { Apollo } from 'apollo-angular';
 import { UpdateEnvironmentGQL } from '../mutation/update-environment.gql';
 import { UpdateTypeGQL } from '../mutation/update-type.gql';
+import { AddEnvironmentGQL } from '../mutation/add-environmenet.gql';
+import { AddTypeGQL } from '../mutation/add-type.gql';
 
 export interface IEnvironmentsAndTypesVar {
   environments: Environment[];
@@ -21,6 +23,14 @@ export const environmentsAndTypesVar: ReactiveVar<IEnvironmentsAndTypesVar> =
     environments: [],
     types: [],
   });
+
+export type ConfigurationType = Environment['__typename'] | Type['__typename'];
+
+export const fetchResponse = () => (source: Observable<any>) => source.pipe(
+  pluck('data'),
+  map(update => Object.values(update)[0]),
+  take(1),
+);
 
 @UntilDestroy()
 @Injectable()
@@ -52,10 +62,7 @@ export class EnvironmentsAndTypesVar {
       .subscribe(environmentsAndTypesVar);
   }
 
-  updateOne(
-    type: Environment['__typename'] | Type['__typename'],
-    dto: Pick<Environment | Type, 'id' | 'name'>,
-  ): void {
+  updateOne(type: ConfigurationType, dto: Pick<Environment | Type, 'id' | 'name'>): void {
     this.apollo
       .mutate({
         mutation: type === 'Environment' ?
@@ -63,11 +70,7 @@ export class EnvironmentsAndTypesVar {
           UpdateTypeGQL,
         variables: { dto },
       })
-      .pipe(
-        pluck('data'),
-        map(update => Object.values(update)[0]),
-        take(1),
-      )
+      .pipe(fetchResponse())
       .subscribe(({ __typename, id, name }) => {
         const { environments, types } = environmentsAndTypesVar();
         const isEnvironment = __typename === 'Environment';
@@ -81,6 +84,34 @@ export class EnvironmentsAndTypesVar {
           types:
             !isEnvironment ?
               types.map(entity => entity.id === id ? { ...entity, name } : entity) :
+              types,
+        });
+      });
+  }
+
+  addOne(type: ConfigurationType, name: string): void {
+    this.apollo
+      .mutate({
+        mutation: type === 'Environment' ?
+          AddEnvironmentGQL :
+          AddTypeGQL,
+        variables: { dto: { name } },
+        refetchQueries: [{ query: this.environmentsAndTypesGQL.document }],
+      })
+      .pipe(fetchResponse())
+      .subscribe((entity: Environment | Type) => {
+        const { environments, types } = environmentsAndTypesVar();
+        const isEnvironment = type === 'Environment';
+
+        environmentsAndTypesVar({
+          ...environmentsAndTypesVar(),
+          environments:
+            isEnvironment ?
+              [entity as Environment, ...environments] :
+              environments,
+          types:
+            !isEnvironment ?
+              [entity as Type, ...types] :
               types,
         });
       });

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Environment } from 'src/app/graphql/model/environment.model';
 import { Type } from 'src/app/graphql/model/type.model';
 
@@ -8,12 +8,9 @@ import { Type } from 'src/app/graphql/model/type.model';
   styleUrls: ['./configuration-table-column.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConfigurationTableColumnComponent implements OnInit {
-  @Input() header: string;
+export class ConfigurationTableColumnComponent {
+  @Input() typename: Environment['__typename'] | Type['__typename'];
   @Input() configuration: Environment[] | Type[];
 
-  constructor() { }
-
-  ngOnInit(): void { }
-
+  isNewRowAdded = false;
 }

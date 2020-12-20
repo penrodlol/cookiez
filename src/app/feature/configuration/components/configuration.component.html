@@ -11,13 +11,13 @@
     fxLayoutGap="50px">
     <div fxFlex="25">
       <cookiez-configuration-table-column
-        header="Environments"
+        typename="Environments"
         [configuration]="(environments$ | async)">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex="25">
       <cookiez-configuration-table-column
-        header="Types"
+        typename="Type"
         [configuration]="(types$ | async)">
       </cookiez-configuration-table-column>
     </div>

@@ -3,7 +3,7 @@
   fxLayout="column"
   fxLayoutGap="30px">
   <h2 nxHeadline="subsection-large">
-    {{header}}
+    {{typename}}
   </h2>
   <div
     class="configuration-table-column__content"
@@ -11,12 +11,34 @@
     <div
       fxLayout="column"
       fxFill>
+      <ng-container *ngIf="isNewRowAdded">
+        <cookiez-configuration-table-column-row
+          [entity]="{
+            __typename: typename,
+            id: null, 
+            name: null
+          }"
+          (added)="isNewRowAdded = false">
+        </cookiez-configuration-table-column-row>
+        <hr class="configuration-table-column__content--separator">
+      </ng-container>
       <ng-container *ngFor="let entity of configuration">
         <cookiez-configuration-table-column-row
           [entity]="entity">
         </cookiez-configuration-table-column-row>
         <hr class="configuration-table-column__content--separator">
       </ng-container>
+      <section
+        fxLayoutAlign="center center">
+        <button
+          class="nx-margin-top-2xs nx-margin-bottom-0"
+          nxButton="tertiary"
+          type="button"
+          [disabled]="isNewRowAdded"
+          (click)="isNewRowAdded = true">
+          Add
+        </button>
+      </section>
     </div>
   </div>
 </div>
