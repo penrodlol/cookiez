@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Environment } from 'src/app/graphql/model/environment.model';
 import { Type } from 'src/app/graphql/model/type.model';
 import { EnvironmentsAndTypesVar } from '../../graphql/var/environments-and-types.var';
+import { matchingNamesValidator } from '../../validators';
 
 @Component({
   selector: 'cookiez-configuration-table-column-row',
@@ -15,7 +16,6 @@ export class ConfigurationTableColumnRowComponent implements OnInit {
 
   editing = false;
   form: FormGroup;
-  localNameState: string;
 
   constructor(
     private builder: FormBuilder,
@@ -24,14 +24,16 @@ export class ConfigurationTableColumnRowComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.builder.group({
-      name: this.entity.name
+      name: this.builder.control(
+        this.entity.name,
+        matchingNamesValidator(this.entity.name),
+      )
     });
-    this.localNameState = this.name.value;
   }
 
   onEditToggle(): void {
     this.editing = !this.editing;
-    this.name.reset(this.localNameState);
+    this.name.reset(this.entity.name);
   }
 
   onSave(): void {
@@ -40,7 +42,6 @@ export class ConfigurationTableColumnRowComponent implements OnInit {
           id: this.entity.id,
           name: this.name.value,
         });
-    this.localNameState = this.name.value;
     this.editing = false;
   }
 

@@ -19,7 +19,8 @@
         nxIconButton="tertiary small" 
         aria-label="Save or Delete"
         class="nx-margin-0"
-        type="button"
+        type="submit"
+        [disabled]="editing && form.invalid"
         (click)="editing ? onSave() : onDelete()">
         <nx-icon [name]="editing ? 'tick' : 'bin'"></nx-icon>
       </button>
@@ -34,7 +35,8 @@
           class="nx-margin-0"
           appearance="outline">
           <input
-            nxInput 
+            nxInput
+            required
             formControlName="name"/>
           </nx-formfield>
       </form>

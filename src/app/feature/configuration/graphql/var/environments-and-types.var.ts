@@ -10,7 +10,6 @@ import { EnvironmentsAndTypesVarGQL } from '../query/environments-and-types-var.
 import { Apollo } from 'apollo-angular';
 import { UpdateEnvironmentGQL } from '../mutation/update-environment.gql';
 import { UpdateTypeGQL } from '../mutation/update-type.gql';
-import { environment } from 'src/environments/environment';
 
 export interface IEnvironmentsAndTypesVar {
   environments: Environment[];
@@ -34,7 +33,7 @@ export class EnvironmentsAndTypesVar {
         'data',
         'environmentsAndTypesVar',
       ),
-      untilDestroyed(this)
+      untilDestroyed(this),
     );
 
   constructor(
@@ -71,14 +70,18 @@ export class EnvironmentsAndTypesVar {
       )
       .subscribe(({ __typename, id, name }) => {
         const { environments, types } = environmentsAndTypesVar();
-
-        const update = __typename === 'Environment' ?
-          environments.map(entity => entity.id === id ? { ...entity, name } : entity) :
-          types.map(entity => entity.id === id ? { ...entity, name } : entity);
+        const isEnvironment = __typename === 'Environment';
 
         environmentsAndTypesVar({
           ...environmentsAndTypesVar(),
-          ...update,
+          environments:
+            isEnvironment ?
+              environments.map(entity => entity.id === id ? { ...entity, name } : entity) :
+              environments,
+          types:
+            !isEnvironment ?
+              types.map(entity => entity.id === id ? { ...entity, name } : entity) :
+              types,
         });
       });
   }

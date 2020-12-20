@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { pluck } from 'rxjs/operators';
 import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.var';
 
 @Component({
@@ -9,7 +10,8 @@ import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.v
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfigurationComponent implements OnInit {
-  environmentsAndTypes$ = this.environmentsAndTypesVar.current$;
+  environments$ = this.environmentsAndTypesVar.current$.pipe(pluck('environments'));
+  types$ = this.environmentsAndTypesVar.current$.pipe(pluck('types'));
 
   constructor(
     private environmentsAndTypesVar: EnvironmentsAndTypesVar,
