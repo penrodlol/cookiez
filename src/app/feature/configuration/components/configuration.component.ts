@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.var';
 
 @Component({
@@ -6,6 +6,7 @@ import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.v
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss'],
   providers: [EnvironmentsAndTypesVar],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ConfigurationComponent implements OnInit {
   environmentsAndTypes$ = this.environmentsAndTypesVar.current$;

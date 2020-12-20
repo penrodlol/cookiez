@@ -19,7 +19,8 @@
         nxIconButton="tertiary small" 
         aria-label="Save or Delete"
         class="nx-margin-0"
-        type="button">
+        type="button"
+        (click)="editing ? onSave() : onDelete()">
         <nx-icon [name]="editing ? 'tick' : 'bin'"></nx-icon>
       </button>
     </section>
@@ -42,7 +43,7 @@
       <h3
         class="nx-margin-0"
         nxHeadline="subsection-small">
-        {{entity.name}}
+        {{name.value}}
       </h3>
     </ng-template>
   </div>

@@ -14,7 +14,6 @@ export function createApollo(
   });
 
   const cache = new InMemoryCache({
-    addTypename: false,
     typePolicies: {
       Query: {
         fields: {
