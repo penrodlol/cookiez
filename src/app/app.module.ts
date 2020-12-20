@@ -3,6 +3,8 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +23,8 @@ import { GraphQLModule } from './graphql/graphql.module';
     AppRoutingModule,
     FlexLayoutModule,
     NavigationModule,
-    GraphQLModule
+    GraphQLModule,
+    PerfectScrollbarModule,
   ],
   providers: [
     AppStartupService,
@@ -30,7 +33,14 @@ import { GraphQLModule } from './graphql/graphql.module';
       useFactory: (startup: AppStartupService) => () => startup.init(),
       deps: [AppStartupService],
       multi: true,
-    }
-  ],  bootstrap: [AppComponent]
+    },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: {
+        suppressScrollX: true,
+      },
+    },
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

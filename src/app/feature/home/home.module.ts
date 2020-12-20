@@ -10,6 +10,7 @@ import { NxTooltipModule } from '@aposin/ng-aquila/tooltip';
 import { NxMessageModule } from '@aposin/ng-aquila/message';
 
 import { LineTruncationLibModule } from 'ngx-line-truncation';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { HomeComponent } from './components/home.component';
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     NxTooltipModule,
     NxMessageModule,
     LineTruncationLibModule,
+    PerfectScrollbarModule,
     RouterModule.forChild(routes),
   ]
 })

@@ -1,9 +1,16 @@
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
 .configuration-table-column {
   &__content {
     background-color: var(--ui-03);
     box-shadow: var(--elevation);
     border-radius: 4px;
     padding: 15px;
+
+    // &--table {
+    //   height: 43vh;
+    //   overflow: auto;
+    // }
 
     &--separator {
       width: 90%;

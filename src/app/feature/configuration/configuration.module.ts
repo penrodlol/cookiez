@@ -9,6 +9,7 @@ import { NxIconModule } from '@aposin/ng-aquila/icon';
 import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
 import { NxDropdownModule } from '@aposin/ng-aquila/dropdown';
 import { NxInputModule } from '@aposin/ng-aquila/input';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AutoFocusDirectiveModule } from '../../shared/auto-focus/auto-focus.directive';
 import { ConfigurationComponent } from './components/configuration.component';
@@ -32,6 +33,7 @@ import { ConfigurationTableColumnRowComponent } from './components/configuration
     NxFormfieldModule,
     NxDropdownModule,
     NxInputModule,
+    PerfectScrollbarModule,
   ],
   exports: [
     ConfigurationComponent,

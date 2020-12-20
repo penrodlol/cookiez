@@ -1,7 +1,7 @@
 <div
   class="configuration-table-column"
   fxLayout="column"
-  fxLayoutGap="30px">
+  fxLayoutGap="10px">
   <h2 nxHeadline="subsection-large">
     {{typename}}
   </h2>
@@ -11,28 +11,31 @@
     <div
       fxLayout="column"
       fxFill>
-      <ng-container *ngIf="isNewRowAdded">
-        <cookiez-configuration-table-column-row
-          [entity]="{
-            __typename: typename,
-            id: null, 
-            name: null
-          }"
-          (added)="isNewRowAdded = false">
-        </cookiez-configuration-table-column-row>
-        <hr class="configuration-table-column__content--separator">
-      </ng-container>
-      <ng-container *ngFor="let entity of configuration">
-        <cookiez-configuration-table-column-row
-          [entity]="entity">
-        </cookiez-configuration-table-column-row>
-        <hr class="configuration-table-column__content--separator">
-      </ng-container>
+      <perfect-scrollbar [style.height.vh]=43>
+        <ng-container *ngIf="isNewRowAdded">
+          <cookiez-configuration-table-column-row
+            [entity]="{
+              __typename: typename,
+              id: null, 
+              name: null
+            }"
+            (added)="isNewRowAdded = false">
+          </cookiez-configuration-table-column-row>
+          <hr class="configuration-table-column__content--separator">
+        </ng-container>
+        <ng-container *ngFor="let entity of configuration">
+          <cookiez-configuration-table-column-row
+            [entity]="entity">
+          </cookiez-configuration-table-column-row>
+          <hr class="configuration-table-column__content--separator">
+        </ng-container>
+      </perfect-scrollbar>
       <section
         fxLayoutAlign="center center">
         <button
           class="nx-margin-top-2xs nx-margin-bottom-0"
           nxButton="tertiary"
+          fxFill
           type="button"
           [disabled]="isNewRowAdded"
           (click)="isNewRowAdded = true">

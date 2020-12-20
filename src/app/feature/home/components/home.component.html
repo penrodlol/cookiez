@@ -1,82 +1,84 @@
 <ng-container *ngIf="(pagination$ | async) as pagination">
-  <table
-    class="home"
-    aria-hidden="true"
-    nxTable
-    nxExpandableTable
-    #expandableTable="nxExpandableTable">
-    <thead>
-      <tr
-        nxTableRow
-        fxLayout="row">
-        <th
-          *ngFor="let header of headers"
-          nxHeaderCell
-          scope="col"
-          [fxFlex]="header.size"
-          [style.font-size]="'var(--font-l)'">
-          {{header.name}}
-        </th>
-        <th
-          nxHeaderCell
-          scope="col"
-          fxFlex="5"
-          fxLayoutAlign="center center">
-        <nx-toggle-button [target]="expandableTable"></nx-toggle-button>
-      </th>
-      </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let item of pagination.collection">
-        <tr nxTableRow>
-          <td
-            nxTableCell
-            fxFlex="25"
-            fxLayoutAlign="start center">
-            {{item.environment | uppercase}}
-          </td>
-          <td
-            nxTableCell
-            fxFlex="30"
-            fxLayoutAlign="start center">
-            {{item.type | uppercase}}
-          </td>
-          <td
-            nxTableCell
-            fxFlex="40">
-            <div class="home__snippet">
-              <section
-                nxTooltip="Copy to Clipboard"
-                nxTooltipPosition="left"
-                [line-truncation]="2"
-                [cdkCopyToClipboard]="item.snippet"
-                (click)="copiedToClipboard()">
-                {{item.snippet}}
-              </section>
-            </div>
-          </td>
-          <td
-            nxTableCell
+  <perfect-scrollbar [style.height]="'calc(100% - 40px)'">
+    <table
+      class="home"
+      aria-hidden="true"
+      nxTable
+      nxExpandableTable
+      #expandableTable="nxExpandableTable">
+      <thead>
+        <tr
+          nxTableRow
+          fxLayout="row">
+          <th
+            *ngFor="let header of headers"
+            nxHeaderCell
+            scope="col"
+            [fxFlex]="header.size"
+            [style.font-size]="'var(--font-l)'">
+            {{header.name}}
+          </th>
+          <th
+            nxHeaderCell
+            scope="col"
             fxFlex="5"
             fxLayoutAlign="center center">
-            <nx-toggle-button [target]="expandableRow"></nx-toggle-button>
-          </td>
+          <nx-toggle-button [target]="expandableTable"></nx-toggle-button>
+        </th>
         </tr>
-        <tr
-          nxExpandableTableRow
-          #expandableRow>
-          <td
-            nxExpandableTableCell
-            fxFlex="100"
-            [style.padding-left.px]=50>
-            <pre [style.white-space]="'pre-line'">
-              {{item.snippet}}
-            </pre>
-          </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let item of pagination.collection">
+          <tr nxTableRow>
+            <td
+              nxTableCell
+              fxFlex="25"
+              fxLayoutAlign="start center">
+              {{item.environment | uppercase}}
+            </td>
+            <td
+              nxTableCell
+              fxFlex="30"
+              fxLayoutAlign="start center">
+              {{item.type | uppercase}}
+            </td>
+            <td
+              nxTableCell
+              fxFlex="40">
+              <div class="home__snippet">
+                <section
+                  nxTooltip="Copy to Clipboard"
+                  nxTooltipPosition="left"
+                  [line-truncation]="2"
+                  [cdkCopyToClipboard]="item.snippet"
+                  (click)="copiedToClipboard()">
+                  {{item.snippet}}
+                </section>
+              </div>
+            </td>
+            <td
+              nxTableCell
+              fxFlex="5"
+              fxLayoutAlign="center center">
+              <nx-toggle-button [target]="expandableRow"></nx-toggle-button>
+            </td>
+          </tr>
+          <tr
+            nxExpandableTableRow
+            #expandableRow>
+            <td
+              nxExpandableTableCell
+              fxFlex="100"
+              [style.padding-left.px]=50>
+              <pre [style.white-space]="'pre-line'">
+                {{item.snippet}}
+              </pre>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </perfect-scrollbar>
 
   <nx-pagination
     class="pagination"

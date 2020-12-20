@@ -1,0 +1,13 @@
+.ps {
+  &__thumb {
+    &-x, &-y {
+      background-color: var(--ui-04) !important;
+    }
+  }
+
+  &__rail {
+    &-x, &-y {
+      background-color: transparent !important;
+    }
+  }
+}
