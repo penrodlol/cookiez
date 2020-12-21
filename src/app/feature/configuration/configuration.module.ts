@@ -16,12 +16,14 @@ import { AutoFocusDirectiveModule } from '../../shared/auto-focus/auto-focus.dir
 import { ConfigurationComponent } from './components/configuration.component';
 import { ConfigurationTableColumnComponent } from './components/configuration-table-column/configuration-table-column.component';
 import { ConfigurationTableColumnRowComponent } from './components/configuration-table-column-row/configuration-table-column-row.component';
+import { ConfigurationCookieFormComponent } from './components/configuration-cookie-form/configuration-cookie-form.component';
 
 @NgModule({
   declarations: [
     ConfigurationComponent,
     ConfigurationTableColumnComponent,
     ConfigurationTableColumnRowComponent,
+    ConfigurationCookieFormComponent,
   ],
   imports: [
     CommonModule,

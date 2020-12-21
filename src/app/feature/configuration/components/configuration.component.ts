@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { pluck } from 'rxjs/operators';
-import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.var';
+import { Observable } from 'rxjs';
+import { EnvironmentsAndTypesVar, IEnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.var';
 
 @Component({
   selector: 'cookiez-configuration',
@@ -10,12 +10,9 @@ import { EnvironmentsAndTypesVar } from '../graphql/var/environments-and-types.v
   encapsulation: ViewEncapsulation.None,
 })
 export class ConfigurationComponent implements OnInit {
-  environments$ = this.environmentsAndTypesVar.current$.pipe(pluck('environments'));
-  types$ = this.environmentsAndTypesVar.current$.pipe(pluck('types'));
+  configuration$: Observable<IEnvironmentsAndTypesVar> = this.environmentsAndTypesVar.current$;
 
-  constructor(
-    private environmentsAndTypesVar: EnvironmentsAndTypesVar,
-  ) { }
+  constructor(private environmentsAndTypesVar: EnvironmentsAndTypesVar) { }
 
   ngOnInit(): void { this.environmentsAndTypesVar.init(); }
 

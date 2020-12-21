@@ -1,0 +1,62 @@
+<div
+  class="configuration-cookie-form"
+  fxLayout="column"
+  fxLayoutGap="10px">
+  <h2 nxHeadline="subsection-large">
+    Create Cookie
+  </h2>
+  <form
+    class="nx-margin-top-m"
+    fxLayout="column"
+    fxLayoutGap="20px"
+    [formGroup]="form">
+    <div
+      fxLayout="row"
+      fxLayoutGap="20px">
+      <nx-formfield
+        fxFlex="50"
+        nxFloatLabel="always"
+        nxLabel="Environment"
+        appearance="outline">
+        <nx-dropdown
+          formControlName="environment"
+          nxFilterPlaceholder="Type to search environment"
+          [nxShowFilter]="true">
+          <nx-dropdown-item
+            *ngFor="let environment of configuration?.environments"
+            [nxValue]="environment.name">
+            {{environment.name}}
+          </nx-dropdown-item>
+        </nx-dropdown>
+      </nx-formfield>
+      <nx-formfield
+        fxFlex="50"
+        nxFloatLabel="always"
+        nxLabel="Type"
+        appearance="outline">
+        <nx-dropdown
+          formControlName="type"
+          nxFilterPlaceholder="Type to search type"
+          [nxShowFilter]="true">
+          <nx-dropdown-item
+            *ngFor="let type of configuration?.types"
+            [nxValue]="type.name">
+            {{type.name}}
+          </nx-dropdown-item>
+        </nx-dropdown>
+      </nx-formfield>
+    </div>
+    <nx-formfield
+      appearance="outline"
+      nxFloatLabel="always">
+      <nx-formfield-label>Snippet</nx-formfield-label>
+      <textarea
+        nxInput
+        formControlName="snippet"
+        type="text"
+        rows="10"
+        style="resize: none;">
+      </textarea>
+    </nx-formfield>
+  </form>
+</div>
