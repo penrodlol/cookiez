@@ -70,17 +70,16 @@ export class EnvironmentsAndTypesVar {
   }
 
   updateOne(type: ConfigurationType, dto: Pick<Environment | Type, 'id' | 'name'>): void {
+    const isEnvironment = type === 'Environment';
+
     this.apollo
       .mutate({
-        mutation: type === 'Environment' ?
-          UpdateEnvironmentGQL :
-          UpdateTypeGQL,
+        mutation: isEnvironment ? UpdateEnvironmentGQL : UpdateTypeGQL,
         variables: { dto },
       })
       .pipe(fetchResponse())
-      .subscribe(({ __typename, id, name }) => {
+      .subscribe(({ id, name }) => {
         const { environments, types } = environmentsAndTypesVar();
-        const isEnvironment = __typename === 'Environment';
 
         environmentsAndTypesVar({
           ...environmentsAndTypesVar(),
