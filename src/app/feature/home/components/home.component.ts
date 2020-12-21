@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   pagination$ = this.cookiesPaginationVar.current$;
 
   constructor(
-    private toastService: NxMessageToastService,
+    private toast: NxMessageToastService,
     private cookiesPaginationVar: CookiesPaginationVar,
   ) { }
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   prevPage = () => this.cookiesPaginationVar.fetch({ previous: true });
   goToPage = (specific: number) => this.cookiesPaginationVar.fetch({ specific });
 
-  copiedToClipboard = () => this.toastService.open('Copied to Clipboard!', {
+  copiedToClipboard = () => this.toast.open('Copied to Clipboard!', {
     context: 'success',
     duration: 1000,
   })

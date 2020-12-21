@@ -12,14 +12,18 @@ import { UpdateEnvironmentGQL } from '../mutation/update-environment.gql';
 import { UpdateTypeGQL } from '../mutation/update-type.gql';
 import { AddEnvironmentGQL } from '../mutation/add-environmenet.gql';
 import { AddTypeGQL } from '../mutation/add-type.gql';
+import { DeleteEnvironmentGQL } from '../mutation/delete-environment.gql';
+import { DeleteTypeGQL } from '../mutation/delete-type.gql';
 
 export interface IEnvironmentsAndTypesVar {
+  isCached: boolean;
   environments: Environment[];
   types: Type[];
 }
 
 export const environmentsAndTypesVar: ReactiveVar<IEnvironmentsAndTypesVar> =
   makeVar({
+    isCached: false,
     environments: [],
     types: [],
   });
@@ -53,10 +57,13 @@ export class EnvironmentsAndTypesVar {
   ) { }
 
   init(): void {
+    if (environmentsAndTypesVar().isCached) { return; }
+
     this.environmentsAndTypesGQL
       .fetch()
       .pipe(
         pluck('data'),
+        map(data => ({ ...data, isCached: true })),
         take(1),
       )
       .subscribe(environmentsAndTypesVar);
@@ -90,18 +97,16 @@ export class EnvironmentsAndTypesVar {
   }
 
   addOne(type: ConfigurationType, name: string): void {
+    const isEnvironment = type === 'Environment';
+
     this.apollo
       .mutate({
-        mutation: type === 'Environment' ?
-          AddEnvironmentGQL :
-          AddTypeGQL,
+        mutation: isEnvironment ? AddEnvironmentGQL : AddTypeGQL,
         variables: { dto: { name } },
-        refetchQueries: [{ query: this.environmentsAndTypesGQL.document }],
       })
       .pipe(fetchResponse())
       .subscribe((entity: Environment | Type) => {
         const { environments, types } = environmentsAndTypesVar();
-        const isEnvironment = type === 'Environment';
 
         environmentsAndTypesVar({
           ...environmentsAndTypesVar(),
@@ -112,6 +117,32 @@ export class EnvironmentsAndTypesVar {
           types:
             !isEnvironment ?
               [entity as Type, ...types] :
+              types,
+        });
+      });
+  }
+
+  deleteOne(type: ConfigurationType, id: string): void {
+    const isEnvironment = type === 'Environment';
+
+    this.apollo
+      .mutate({
+        mutation: isEnvironment ? DeleteEnvironmentGQL : DeleteTypeGQL,
+        variables: { dto: { id } },
+      })
+      .pipe(fetchResponse())
+      .subscribe((deletedEntity: Pick<Environment | Type, 'id' | '__typename'>) => {
+        const { environments, types } = environmentsAndTypesVar();
+
+        environmentsAndTypesVar({
+          ...environmentsAndTypesVar(),
+          environments:
+            isEnvironment ?
+              environments.filter(entity => entity.id !== deletedEntity.id) :
+              environments,
+          types:
+            !isEnvironment ?
+              types.filter(entity => entity.id !== deletedEntity.id) :
               types,
         });
       });

@@ -14,15 +14,30 @@
         (click)="onEditToggle()">
         <nx-icon [name]="editing || !entity.id ? 'x' : 'edit'"></nx-icon>
       </button>
-      <button
-        nxIconButton="tertiary small" 
-        aria-label="Save or Delete"
-        class="nx-margin-0"
-        type="submit"
-        [disabled]="(editing || !entity.id) && form.invalid"
-        (click)="editing || !entity.id ? onSave() : onDelete()">
-        <nx-icon [name]="editing || !entity.id ? 'tick' : 'bin'"></nx-icon>
-      </button>
+      <ng-container *ngIf="(editing || !entity.id); else showTrash">
+        <button
+          nxIconButton="tertiary small" 
+          class="nx-margin-0"
+          aria-label="Save"
+          type="submit"
+          [disabled]="form.invalid"
+          (click)="onSave()">
+          <nx-icon name="tick"></nx-icon>
+        </button>
+      </ng-container>
+      <ng-template #showTrash>
+        <button
+          nxIconButton="tertiary small" 
+          class="nx-margin-0"
+          aria-label="Delete"
+          type="submit"
+          nxPopoverDirection="right"
+          nxPopoverTrigger="click"
+          nxPopoverModal="true"
+          [nxPopoverTriggerFor]="deleteConfiguration">
+          <nx-icon name="bin"></nx-icon>
+        </button>
+      </ng-template>
     </section>
   </div>
   <div
@@ -51,3 +66,29 @@
     </ng-template>
   </div>
 </div>
+
+<nx-popover #deleteConfiguration>
+  <div
+    fxLayout="column"
+    fxLayoutGap="10px">
+    <h3>Are you sure you?</h3>
+    <section
+      fxLayout="row"
+      fxLayoutGap="20px">
+      <button
+        fxFlex="50"
+        nxButton="secondary small"
+        type="button"
+        (click)="deleteConfiguration.emitCloseButtonClick()">
+        No
+      </button>
+      <button
+        fxFlex="50"
+        nxButton="primary small"
+        type="button"
+        (click)="onDelete(deleteConfiguration)">
+        Yes
+      </button>
+    </section>
+  </div>
+</nx-popover>
