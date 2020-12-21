@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NxMessageToastService } from '@aposin/ng-aquila/message';
+import { CookiesPaginationVar } from 'src/app/graphql/var/cookies-pagination.var';
 import { IEnvironmentsAndTypesVar } from '../../graphql/var/environments-and-types.var';
 
 @Component({
@@ -13,7 +15,9 @@ export class ConfigurationCookieFormComponent implements OnInit {
   form: FormGroup;
 
   constructor(
+    private cookiesPaginationVar: CookiesPaginationVar,
     private buider: FormBuilder,
+    private toast: NxMessageToastService,
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +25,15 @@ export class ConfigurationCookieFormComponent implements OnInit {
       environment: null,
       type: null,
       snippet: null,
+    });
+  }
+
+  onCreate(): void {
+    this.cookiesPaginationVar.addOne(this.form.value);
+    this.form.reset();
+    this.toast.open('Cookie Created!', {
+      context: 'success',
+      duration: 1000,
     });
   }
 

@@ -16,4 +16,8 @@
       height: 30px !important;
     }
   }
+
+  &__close {
+    box-shadow: var(--elevation);
+  }
 }

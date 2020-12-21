@@ -19,9 +19,11 @@
         nxLabel="Environment"
         appearance="outline">
         <nx-dropdown
+          required
           formControlName="environment"
           nxFilterPlaceholder="Type to search environment"
-          [nxShowFilter]="true">
+          [nxShowFilter]="true"
+          style="box-shadow: var(--elevation);">
           <nx-dropdown-item
             *ngFor="let environment of configuration?.environments"
             [nxValue]="environment.name">
@@ -35,9 +37,11 @@
         nxLabel="Type"
         appearance="outline">
         <nx-dropdown
+          required
           formControlName="type"
           nxFilterPlaceholder="Type to search type"
-          [nxShowFilter]="true">
+          [nxShowFilter]="true"
+          style="box-shadow: var(--elevation);">
           <nx-dropdown-item
             *ngFor="let type of configuration?.types"
             [nxValue]="type.name">
@@ -52,11 +56,22 @@
       <nx-formfield-label>Snippet</nx-formfield-label>
       <textarea
         nxInput
+        required
         formControlName="snippet"
         type="text"
         rows="10"
-        style="resize: none;">
+        style="resize: none; box-shadow: var(--elevation);">
       </textarea>
     </nx-formfield>
+    <ng-container *ngIf="form.dirty">
+      <button
+        nxButton="emphasis"
+        fxFill
+        type="submit"
+        [disabled]="form.invalid"
+        (click)="onCreate()">
+        Add
+      </button>
+    </ng-container>
   </form>
 </div>

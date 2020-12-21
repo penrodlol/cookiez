@@ -10,6 +10,7 @@ import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
 import { NxDropdownModule } from '@aposin/ng-aquila/dropdown';
 import { NxInputModule } from '@aposin/ng-aquila/input';
 import { NxPopoverModule } from '@aposin/ng-aquila/popover';
+import { NxMessageModule } from '@aposin/ng-aquila/message';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { AutoFocusDirectiveModule } from '../../shared/auto-focus/auto-focus.directive';
@@ -37,6 +38,7 @@ import { ConfigurationCookieFormComponent } from './components/configuration-coo
     NxDropdownModule,
     NxInputModule,
     NxPopoverModule,
+    NxMessageModule,
     PerfectScrollbarModule,
   ],
   exports: [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
-import { CookiesPaginationVar } from '../graphql/var/cookies-pagination.var';
+import { CookiesPaginationVar } from '../../../graphql/var/cookies-pagination.var';
 
 export interface IHeader { name: string; size: number; }
 
@@ -8,7 +8,6 @@ export interface IHeader { name: string; size: number; }
   selector: 'cookiez-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [CookiesPaginationVar],
 })
 export class HomeComponent implements OnInit {
   readonly headers: ReadonlyArray<IHeader> = [

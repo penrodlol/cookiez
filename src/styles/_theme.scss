@@ -24,6 +24,22 @@ $cookiez-theme: (
     // =============== MODAL
       modal-background-color: var(--ui-01),
     // ===============
+
+    // =============== DROPDOWN
+      dropdown-panel-header-text-color: var(--text-02),
+      dropdown-panel-header-background-color: var(--ui-04),
+      dropdown-item-hover-color: var(--ui-04),
+      dropdown-filter-input-border-color: var(--text-01),
+    // ===============
+
+    // =============== BUTTON
+      button-emphasis-background-color: var(--ui-03),
+      button-emphasis-border-color: var(--ui-03),
+      button-emphasis-text-color: var(--ui-06),
+      button-emphasis-hover-background-color: var(--ui-04),
+      button-emphasis-hover-text-color: #000,
+      button-emphasis-active-text-color: #000,
+    // ===============
 );
 
 $nx-themes: nx-register-theme($cookiez-theme, cookiez-theme);

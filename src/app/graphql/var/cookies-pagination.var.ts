@@ -8,6 +8,7 @@ import { CookiesGQL, CookiesResponse } from '../query/cookies.gql';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { CookiesPaginationVarGQL } from '../query/cookies-pagination-var.gql';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AddCookieGQL } from '../mutation/add-cookie.gql';
 
 export interface ICookiesPaginationVar {
   collection: Cookie[];
@@ -39,7 +40,7 @@ export const fetchCookies = () => (source: Observable<
 );
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CookiesPaginationVar {
   readonly PAGE_SIZE = 20;
   readonly current$: Observable<ICookiesPaginationVar> = this.cookiesPaginationVarGQL
@@ -57,6 +58,7 @@ export class CookiesPaginationVar {
     private cookiesPaginationVarGQL: CookiesPaginationVarGQL,
     private cookiesGQL: CookiesGQL,
     private cookiesCacheGQL: CookiesCacheGQL,
+    private addCookieGQL: AddCookieGQL,
   ) { }
 
   init(): void {
@@ -92,6 +94,27 @@ export class CookiesPaginationVar {
           ...cookiesPaginationVar(),
           page,
           collection,
+        });
+      });
+  }
+
+  addOne(dto: Pick<Cookie, 'environment' | 'type' | 'snippet'>): void {
+    this.addCookieGQL
+      .mutate({ dto })
+      .pipe(
+        pluck(
+          'data',
+          'addCookie',
+        ),
+        take(1),
+      )
+      .subscribe(cookie => {
+        const { collection, total } = cookiesPaginationVar();
+
+        cookiesPaginationVar({
+          ...cookiesPaginationVar(),
+          total: total + 1,
+          collection: [cookie, ...collection],
         });
       });
   }

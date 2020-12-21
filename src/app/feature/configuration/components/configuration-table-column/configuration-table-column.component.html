@@ -11,7 +11,7 @@
     <div
       fxLayout="column"
       fxFill>
-      <perfect-scrollbar [style.height.vh]=43>
+      <perfect-scrollbar [style.height.vh]=44>
         <ng-container *ngIf="isNewRowAdded">
           <cookiez-configuration-table-column-row
             [entity]="{
@@ -34,7 +34,7 @@
         fxLayoutAlign="center center">
         <button
           class="nx-margin-top-2xs nx-margin-bottom-0"
-          nxButton="tertiary"
+          nxButton="emphasis"
           fxFill
           type="button"
           [disabled]="isNewRowAdded"
