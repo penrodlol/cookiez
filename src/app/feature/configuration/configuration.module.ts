@@ -18,6 +18,7 @@ import { ConfigurationComponent } from './components/configuration.component';
 import { ConfigurationTableColumnComponent } from './components/configuration-table-column/configuration-table-column.component';
 import { ConfigurationTableColumnRowComponent } from './components/configuration-table-column-row/configuration-table-column-row.component';
 import { ConfigurationCookieFormComponent } from './components/configuration-cookie-form/configuration-cookie-form.component';
+import { ConfirmationPopoverTemplateModule } from 'src/app/shared/confirmation-popover-template/confirmation-popover-template.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ConfigurationCookieFormComponent } from './components/configuration-coo
     ReactiveFormsModule,
     FlexLayoutModule,
     AutoFocusDirectiveModule,
+    ConfirmationPopoverTemplateModule,
     NxModalModule,
     NxButtonModule,
     NxIconModule,

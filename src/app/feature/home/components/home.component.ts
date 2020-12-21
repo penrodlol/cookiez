@@ -11,8 +11,9 @@ export interface IHeader { name: string; size: number; }
 })
 export class HomeComponent implements OnInit {
   readonly headers: ReadonlyArray<IHeader> = [
-     { name: 'Environment', size: 25 },
-     { name: 'Type', size: 30 },
+     { name: '', size: 8 },
+     { name: 'Environment', size: 26 },
+     { name: 'Type', size: 26 },
      { name: 'Snippet', size: 40 },
   ];
 
@@ -33,5 +34,9 @@ export class HomeComponent implements OnInit {
     context: 'success',
     duration: 1000,
   })
+
+  onDelete(id: string): void {
+    this.cookiesPaginationVar.deleteOne({ id });
+  }
 
 }

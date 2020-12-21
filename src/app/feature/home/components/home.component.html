@@ -32,13 +32,32 @@
           <tr nxTableRow>
             <td
               nxTableCell
-              fxFlex="25"
+              fxFlex="8"
+              fxLayoutAlign="start center">
+              <section
+                fxLayout="row"
+                fxLayoutGap="10px">
+                <button
+                  nxIconButton="tertiary small" 
+                  aria-label="Edit Cookie"
+                  class="nx-margin-0"
+                  type="button">
+                  <nx-icon name="edit"></nx-icon>
+                </button>
+                <ng-container
+                  *ngTemplateOutlet="deleteCookie; context: { id: item.id }">
+                </ng-container>
+              </section>
+            </td>
+            <td
+              nxTableCell
+              fxFlex="26"
               fxLayoutAlign="start center">
               {{item.environment | uppercase}}
             </td>
             <td
               nxTableCell
-              fxFlex="30"
+              fxFlex="26"
               fxLayoutAlign="start center">
               {{item.type | uppercase}}
             </td>
@@ -92,3 +111,26 @@
     (nxGoPage)="goToPage($event)">
   </nx-pagination>
 </ng-container>
+
+<ng-template
+  #deleteCookie
+  let-id=id>
+  <button
+    nxIconButton="tertiary small" 
+    aria-label="Delete Cookie"
+    class="nx-margin-0"
+    type="button"
+    nxPopoverDirection="right"
+    nxPopoverTrigger="click"
+    nxPopoverModal="true"
+    [nxPopoverTriggerFor]="deleteCookiePopover">
+    <nx-icon name="bin"></nx-icon>
+  </button>
+
+  <nx-popover #deleteCookiePopover>
+    <cookiez-confirmation-popover-template
+      (cancel)="deleteCookiePopover.emitCloseButtonClick()"
+      (confirm)="deleteCookiePopover.emitCloseButtonClick(); onDelete(id)">
+    </cookiez-confirmation-popover-template>
+  </nx-popover>
+</ng-template>

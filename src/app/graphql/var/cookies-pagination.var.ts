@@ -9,6 +9,7 @@ import { ApolloQueryResult } from '@apollo/client/core';
 import { CookiesPaginationVarGQL } from '../query/cookies-pagination-var.gql';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AddCookieGQL } from '../mutation/add-cookie.gql';
+import { DeleteCookieGQL } from '../mutation/delete-cookie.gql';
 
 export interface ICookiesPaginationVar {
   collection: Cookie[];
@@ -59,6 +60,7 @@ export class CookiesPaginationVar {
     private cookiesGQL: CookiesGQL,
     private cookiesCacheGQL: CookiesCacheGQL,
     private addCookieGQL: AddCookieGQL,
+    private deleteCookieGQL: DeleteCookieGQL,
   ) { }
 
   init(): void {
@@ -115,6 +117,27 @@ export class CookiesPaginationVar {
           ...cookiesPaginationVar(),
           total: total + 1,
           collection: [cookie, ...collection],
+        });
+      });
+  }
+
+  deleteOne(dto: Pick<Cookie, 'id'>): void {
+    this.deleteCookieGQL
+      .mutate({ dto })
+      .pipe(
+        pluck(
+          'data',
+          'deleteCookie',
+        ),
+        take(1),
+      )
+      .subscribe(({ id }) => {
+        const { collection, total } = cookiesPaginationVar();
+
+        cookiesPaginationVar({
+          ...cookiesPaginationVar(),
+          total: total + 1,
+          collection: collection.filter(entity => entity.id !== id),
         });
       });
   }

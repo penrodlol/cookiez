@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
-import { NxPopoverComponent } from '@aposin/ng-aquila/popover';
 import { Environment } from 'src/app/graphql/model/environment.model';
 import { Type } from 'src/app/graphql/model/type.model';
 import { EnvironmentsAndTypesVar } from '../../graphql/var/environments-and-types.var';
@@ -58,8 +57,7 @@ export class ConfigurationTableColumnRowComponent implements OnInit {
     }
   }
 
-  onDelete(popover: NxPopoverComponent): void {
-    popover.emitCloseButtonClick();
+  onDelete(): void {
     this.environmentsAndTypesVar.deleteOne(
       this.entity.__typename,
       this.entity.id
