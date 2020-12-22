@@ -24,6 +24,7 @@ import { HomeComponent } from './components/home.component';
 import { ConfirmationPopoverTemplateModule } from 'src/app/shared/confirmation-popover-template/confirmation-popover-template.module';
 import { CookieFormModule } from 'src/app/shared/cookie-form/cookie-form.module';
 import { EditCookieModalComponent } from './components/edit-cookie-modal/edit-cookie-modal.component';
+import { TableFilterComponent } from './components/table-filter/table-filter.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     EditCookieModalComponent,
+    TableFilterComponent,
   ],
   imports: [
     CommonModule,

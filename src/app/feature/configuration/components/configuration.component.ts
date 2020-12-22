@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 import { EnvironmentsAndTypesVar, IEnvironmentsAndTypesVar } from '../../../graphql/environments-and-types/var/environments-and-types.var';
 
 @Component({
@@ -8,11 +9,15 @@ import { EnvironmentsAndTypesVar, IEnvironmentsAndTypesVar } from '../../../grap
   styleUrls: ['./configuration.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ConfigurationComponent implements OnInit {
-  configuration$: Observable<IEnvironmentsAndTypesVar> = this.environmentsAndTypesVar.current$;
+export class ConfigurationComponent {
+  environments$: Observable<IEnvironmentsAndTypesVar> = this.environmentsAndTypesVar
+    .current$
+    .pipe(pluck('environments'));
+
+  types$: Observable<IEnvironmentsAndTypesVar> = this.environmentsAndTypesVar
+    .current$
+    .pipe(pluck('types'));
 
   constructor(private environmentsAndTypesVar: EnvironmentsAndTypesVar) { }
-
-  ngOnInit(): void { this.environmentsAndTypesVar.init(); }
 
 }

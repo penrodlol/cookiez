@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
 import { NxDialogService } from '@aposin/ng-aquila/modal';
 import { take } from 'rxjs/operators';
+import { EnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/var/environments-and-types.var';
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { CookiesPaginationVar } from '../../../graphql/cookies/var/cookies-pagination.var';
 import { EditCookieModalComponent } from './edit-cookie-modal/edit-cookie-modal.component';
@@ -27,9 +28,13 @@ export class HomeComponent implements OnInit {
     private toast: NxMessageToastService,
     private dialog: NxDialogService,
     private cookiesPaginationVar: CookiesPaginationVar,
+    private environmentsAndTypesVar: EnvironmentsAndTypesVar,
   ) { }
 
-  ngOnInit(): void { this.cookiesPaginationVar.init(); }
+  ngOnInit(): void {
+    this.cookiesPaginationVar.init();
+    this.environmentsAndTypesVar.init();
+  }
 
   nextPage = () => this.cookiesPaginationVar.fetch({ next: true });
   prevPage = () => this.cookiesPaginationVar.fetch({ previous: true });

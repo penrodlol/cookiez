@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NX_MODAL_DATA } from '@aposin/ng-aquila/modal';
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
@@ -11,7 +11,7 @@ import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagina
   templateUrl: './edit-cookie-modal.component.html',
   styleUrls: ['./edit-cookie-modal.component.scss']
 })
-export class EditCookieModalComponent implements OnInit {
+export class EditCookieModalComponent {
   valid$ = this.manager.validityChanges('cookie');
   dirty$ = this.manager.dirtyChanges('cookie');
 
@@ -21,8 +21,6 @@ export class EditCookieModalComponent implements OnInit {
     private environmentsAndTypesVar: EnvironmentsAndTypesVar,
     private cookiesPaginationVar: CookiesPaginationVar,
   ) { }
-
-  ngOnInit(): void { this.environmentsAndTypesVar.init(); }
 
   onSaveProgress(): void {
     this.cookiesPaginationVar

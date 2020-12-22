@@ -12,13 +12,13 @@
     <div fxFlex="25">
       <cookiez-configuration-table-column
         typename="Environment"
-        [configuration]="(configuration$ | async)?.environments">
+        [configuration]="(environments$ | async)">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex="25">
       <cookiez-configuration-table-column
         typename="Type"
-        [configuration]="(configuration$ | async)?.types">
+        [configuration]="(types$ | async)">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex>
