@@ -4,6 +4,7 @@ import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
 import { CookieForm } from 'src/app/shared/cookie-form/cookie-form.component';
 import { EnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/var/environments-and-types.var';
+import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagination.var';
 
 @Component({
   selector: 'cookiez-edit-cookie-modal',
@@ -17,12 +18,17 @@ export class EditCookieModalComponent implements OnInit {
     @Inject(NX_MODAL_DATA) public data: Cookie,
     private manager: FormManger<CookieForm>,
     private environmentsAndTypesVar: EnvironmentsAndTypesVar,
+    private cookiesPaginationVar: CookiesPaginationVar,
   ) { }
 
   ngOnInit(): void { this.environmentsAndTypesVar.init(); }
 
   onSaveProgress(): void {
-
+    this.cookiesPaginationVar
+      .updateOne({
+        id: this.data.id,
+        ...this.manager.getControl('cookie').value,
+      });
   }
 
 }
