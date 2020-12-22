@@ -1,40 +1,40 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
-import { CookiesPaginationVar } from 'src/app/graphql/var/cookies-pagination.var';
-import { IEnvironmentsAndTypesVar } from '../../graphql/var/environments-and-types.var';
+import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
+import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagination.var';
+import { CookieForm } from 'src/app/shared/cookie-form/cookie-form.component';
 
 @Component({
   selector: 'cookiez-configuration-cookie-form',
   templateUrl: './configuration-cookie-form.component.html',
   styleUrls: ['./configuration-cookie-form.component.scss']
 })
-export class ConfigurationCookieFormComponent implements OnInit {
-  @Input() configuration: IEnvironmentsAndTypesVar;
-
-  form: FormGroup;
+export class ConfigurationCookieFormComponent {
+  dirty$ = this.manager.dirtyChanges('cookie');
+  valid$ = this.manager.validityChanges('cookie');
 
   constructor(
     private cookiesPaginationVar: CookiesPaginationVar,
-    private buider: FormBuilder,
+    private manager: FormManger<CookieForm>,
     private toast: NxMessageToastService,
   ) { }
 
-  ngOnInit(): void {
-    this.form = this.buider.group({
+  onCreate(): void {
+    this.cookiesPaginationVar.addOne(
+      this.manager.getControl('cookie').value
+    );
+
+    this.manager.setValue('cookie', {
       environment: null,
       type: null,
       snippet: null,
     });
-  }
+    this.manager.markAsUntouched('cookie');
+    this.manager.markAsPristine('cookie');
 
-  onCreate(): void {
-    this.cookiesPaginationVar.addOne(this.form.value);
-    this.form.reset();
     this.toast.open('Cookie Created!', {
       context: 'success',
       duration: 1000,
     });
   }
-
 }

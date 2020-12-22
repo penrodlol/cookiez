@@ -3,8 +3,8 @@ import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { environment } from '../../environments/environment';
-import { cookiesPaginationVar } from 'src/app/graphql/var/cookies-pagination.var';
-import { environmentsAndTypesVar } from '../feature/configuration/graphql/var/environments-and-types.var';
+import { cookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagination.var';
+import { environmentsAndTypesVar } from './environments-and-types/var/environments-and-types.var';
 
 export function createApollo(
   httpLink: HttpLink

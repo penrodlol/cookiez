@@ -1,0 +1,29 @@
+<div
+  nxModalContent
+  fxLayout="column"
+  fxLayoutGap="15px">
+  <h1 nxHeadline="subsection-large">
+    Edit Cookie
+  </h1>
+  <cookiez-cookie-form
+    [cookie]="data">
+  </cookiez-cookie-form>
+</div>
+<div nxModalActions>
+  <button
+    class="nx-margin-bottom-0 nx-margin-right-xs"
+    nxModalClose="Cancel"
+    nxButton="small secondary"
+    type="button">
+    Cancel
+  </button>
+  <button
+    class="nx-margin-bottom-0"
+    nxModalClose="Save Changes"
+    nxButton="small"
+    type="button"
+    [disabled]="!(valid$ | async)"
+    (click)="onSaveProgress()">
+    Save Changes
+  </button>
+</div>

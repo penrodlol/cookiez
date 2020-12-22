@@ -1,0 +1,59 @@
+<form
+  class="nx-margin-top-m"
+  fxLayout="column"
+  fxLayoutGap="20px"
+  [formGroup]="form">
+  <div
+    fxLayout="row"
+    fxLayoutGap="20px">
+    <nx-formfield
+      fxFlex="50"
+      nxFloatLabel="always"
+      nxLabel="Environment"
+      appearance="outline">
+      <nx-dropdown
+        required
+        formControlName="environment"
+        nxFilterPlaceholder="Type to search environment"
+        [nxShowFilter]="true"
+        style="box-shadow: var(--elevation);">
+        <nx-dropdown-item
+          *ngFor="let environment of (environments$ | async)"
+          [nxValue]="environment.name">
+          {{environment.name}}
+        </nx-dropdown-item>
+      </nx-dropdown>
+    </nx-formfield>
+    <nx-formfield
+      fxFlex="50"
+      nxFloatLabel="always"
+      nxLabel="Type"
+      appearance="outline">
+      <nx-dropdown
+        required
+        formControlName="type"
+        nxFilterPlaceholder="Type to search type"
+        [nxShowFilter]="true"
+        style="box-shadow: var(--elevation);">
+        <nx-dropdown-item
+          *ngFor="let type of (types$ | async)"
+          [nxValue]="type.name">
+          {{type.name}}
+        </nx-dropdown-item>
+      </nx-dropdown>
+    </nx-formfield>
+  </div>
+  <nx-formfield
+    appearance="outline"
+    nxFloatLabel="always">
+    <nx-formfield-label>Snippet</nx-formfield-label>
+    <textarea
+      nxInput
+      required
+      formControlName="snippet"
+      type="text"
+      rows="10"
+      style="resize: none; box-shadow: var(--elevation);">
+    </textarea>
+  </nx-formfield>
+</form>

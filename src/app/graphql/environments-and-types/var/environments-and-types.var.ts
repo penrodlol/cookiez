@@ -37,7 +37,7 @@ export const fetchResponse = () => (source: Observable<any>) => source.pipe(
 );
 
 @UntilDestroy()
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class EnvironmentsAndTypesVar {
   readonly current$: Observable<any> = this.environmentsAndTypesVarGQL
     .watch()

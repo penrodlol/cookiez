@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
-import { CookiesPaginationVar } from '../../../graphql/var/cookies-pagination.var';
+import { NxDialogService } from '@aposin/ng-aquila/modal';
+import { Cookie } from 'src/app/graphql/model/cookie.model';
+import { CookiesPaginationVar } from '../../../graphql/cookies/var/cookies-pagination.var';
+import { EditCookieModalComponent } from './edit-cookie-modal/edit-cookie-modal.component';
 
 export interface IHeader { name: string; size: number; }
 
@@ -21,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private toast: NxMessageToastService,
+    private dialog: NxDialogService,
     private cookiesPaginationVar: CookiesPaginationVar,
   ) { }
 
@@ -35,8 +39,14 @@ export class HomeComponent implements OnInit {
     duration: 1000,
   })
 
+  onEdit(cookie: Cookie): void {
+    this.dialog.open(EditCookieModalComponent, {
+      showCloseIcon: true,
+      data: cookie,
+    });
+  }
+
   onDelete(id: string): void {
     this.cookiesPaginationVar.deleteOne({ id });
   }
-
 }

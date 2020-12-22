@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { AbstractControl, FormBuilder, FormGroup } from '@angular/forms';
 import { Environment } from 'src/app/graphql/model/environment.model';
 import { Type } from 'src/app/graphql/model/type.model';
-import { EnvironmentsAndTypesVar } from '../../graphql/var/environments-and-types.var';
+import { EnvironmentsAndTypesVar } from '../../../../graphql/environments-and-types/var/environments-and-types.var';
 import { matchingNamesValidator } from '../../validators';
 
 @Component({

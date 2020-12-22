@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { gql, Mutation } from 'apollo-angular';
-import { Cookie } from '../model/cookie.model';
+import { Cookie } from '../../model/cookie.model';
 
 export type AddCookieVariables = {
   dto: Pick<Cookie, 'environment' | 'type' | 'snippet'>;

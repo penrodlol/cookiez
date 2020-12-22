@@ -19,6 +19,7 @@
     "@angular/router": "~10.2.0",
     "@apollo/client": "^3.0.0",
     "@aposin/ng-aquila": "^10.5.0",
+    "@ngneat/forms-manager": "^2.3.0",
     "@ngneat/until-destroy": "^8.0.3",
     "apollo-angular": "^2.1.0",
     "css-vars-ponyfill": "^2.1.2",
