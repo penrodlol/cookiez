@@ -6,11 +6,13 @@ import { NxDropdownModule } from '@aposin/ng-aquila/dropdown';
 import { NxFormfieldModule } from '@aposin/ng-aquila/formfield';
 import { NxInputModule } from '@aposin/ng-aquila/input';
 
-import { CookieFormComponent } from './cookie-form.component';
+import { CookieFormComponent } from './components/cookie-form.component';
+import { CookieFormValidatorDirective } from './validators/cookie-form-validator.directive';
 
 @NgModule({
   declarations: [
     CookieFormComponent,
+    CookieFormValidatorDirective,
   ],
   imports: [
     CommonModule,

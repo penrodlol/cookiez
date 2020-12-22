@@ -12,17 +12,17 @@
 <div nxModalActions>
   <button
     class="nx-margin-bottom-0 nx-margin-right-xs"
-    nxModalClose="Cancel"
+    nxModalClose="false"
     nxButton="small secondary"
     type="button">
     Cancel
   </button>
   <button
     class="nx-margin-bottom-0"
-    nxModalClose="Save Changes"
+    nxModalClose="true"
     nxButton="small"
     type="button"
-    [disabled]="!(valid$ | async)"
+    [disabled]="!(valid$ | async) || !(dirty$ | async)"
     (click)="onSaveProgress()">
     Save Changes
   </button>

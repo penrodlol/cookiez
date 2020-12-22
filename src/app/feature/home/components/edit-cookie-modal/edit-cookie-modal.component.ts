@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { NX_MODAL_DATA } from '@aposin/ng-aquila/modal';
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
-import { CookieForm } from 'src/app/shared/cookie-form/cookie-form.component';
+import { CookieForm } from 'src/app/shared/cookie-form/components/cookie-form.component';
 import { EnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/var/environments-and-types.var';
 import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagination.var';
 
@@ -13,6 +13,7 @@ import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagina
 })
 export class EditCookieModalComponent implements OnInit {
   valid$ = this.manager.validityChanges('cookie');
+  dirty$ = this.manager.dirtyChanges('cookie');
 
   constructor(
     @Inject(NX_MODAL_DATA) public data: Cookie,

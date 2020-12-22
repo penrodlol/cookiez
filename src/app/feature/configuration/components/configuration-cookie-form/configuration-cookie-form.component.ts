@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NxMessageToastService } from '@aposin/ng-aquila/message';
 import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
 import { CookiesPaginationVar } from 'src/app/graphql/cookies/var/cookies-pagination.var';
-import { CookieForm } from 'src/app/shared/cookie-form/cookie-form.component';
+import { CookieForm } from 'src/app/shared/cookie-form/components/cookie-form.component';
 
 @Component({
   selector: 'cookiez-configuration-cookie-form',
