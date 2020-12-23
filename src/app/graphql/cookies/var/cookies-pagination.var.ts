@@ -132,7 +132,7 @@ export class CookiesPaginationVar {
             .subscribe(cookies => {
               store.writeQuery({
                 query: this.cookiesCacheGQL.document,
-                data: { cookies: [addCookie, ...cookies ]}
+                data: { cookies: [addCookie, ...cookies ]},
               });
             });
         }
@@ -185,7 +185,7 @@ export class CookiesPaginationVar {
               store.evict({ fieldName: 'cookies', broadcast: false });
               store.writeQuery({
                 query: this.cookiesCacheGQL.document,
-                data: { cookies: cookies.filter(cookie => cookie.id !== id)}
+                data: { cookies: cookies.filter(cookie => cookie.id !== id) },
               });
             });
         }
@@ -202,7 +202,7 @@ export class CookiesPaginationVar {
 
         cookiesPaginationVar({
           ...cookiesPaginationVar(),
-          total: total + 1,
+          total: total - 1,
           collection: collection.filter(entity => entity.id !== id),
         });
       });
