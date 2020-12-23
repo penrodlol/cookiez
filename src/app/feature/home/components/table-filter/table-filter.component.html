@@ -54,26 +54,24 @@
         nxInput
         formControlName="snippet">
     </nx-formfield>
-    <div
-      fxLayoutAlign="start center">
-      <button
-        class="nx-margin-top-3xs nx-margin-bottom-0"
-        nxButton="small"
-        type="button"
-        [style.height.px]=40
-        (click)="onSearch()">
-        Search
-      </button>
-    </div>
     <ng-container *ngIf="form.dirty">
-      <div
-      fxLayoutAlign="start center">
+      <div fxLayoutAlign="start center">
         <button
           class="nx-margin-top-3xs nx-margin-bottom-0"
           nxButton="small"
           type="button"
           [style.height.px]=40
-          (click)="form.reset()">
+          (click)="onSearch()">
+          Search
+        </button>
+      </div>
+      <div fxLayoutAlign="start center">
+        <button
+          class="nx-margin-top-3xs nx-margin-bottom-0"
+          nxButton="small"
+          type="button"
+          [style.height.px]=40
+          (click)="onClear()">
           Clear
         </button>
       </div>
