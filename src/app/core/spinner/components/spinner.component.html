@@ -1,0 +1,20 @@
+<ng-container *ngIf="spinnerState$ | async">
+  <div
+    class="spinner"
+    fxLayout="column"
+    fxLayoutGap="30px"
+    fxLayoutAlign="center center">
+    <div class="spinner__icon">
+      <div class="spinner__icon--outer">
+        <div class="spinner__icon--mid">
+          <div class="spinner__icon--inner"></div>
+        </div>
+      </div>
+    </div>
+    <h1
+      class="spinner__message"
+      nxHeadline="subsection-large">
+      Loading...
+    </h1>
+  </div>
+</ng-container>

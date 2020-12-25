@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,10 +11,11 @@ import { AppComponent } from './app.component';
 import { AppStartupService } from './app-startup.service';
 import { NavigationModule } from './feature/navigation/navigation.module';
 import { GraphQLModule } from './graphql/graphql.module';
+import { SpinnerModule } from './core/spinner/spinner.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +24,7 @@ import { GraphQLModule } from './graphql/graphql.module';
     AppRoutingModule,
     FlexLayoutModule,
     NavigationModule,
+    SpinnerModule,
     GraphQLModule,
     PerfectScrollbarModule,
   ],
@@ -42,5 +44,6 @@ import { GraphQLModule } from './graphql/graphql.module';
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

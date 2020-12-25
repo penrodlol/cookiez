@@ -4,7 +4,7 @@
     "baseUrl": "./",
     "paths": {
       "@icon-registry/*": [
-        "src/app/icon-registry/*"
+        "src/app/core/icon-registry/*"
       ],
       "@home/*": [
         "src/app/feature/home/*"

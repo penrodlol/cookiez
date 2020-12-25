@@ -1,0 +1,34 @@
+.spinner {
+  z-index: 99999999999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--ui-01);
+  
+  &__icon {
+    @keyframes rotateAnimation {
+      100% { transform: rotate(1turn); }
+    }
+
+    &--outer,
+    &--mid {
+      padding: 10px;
+      border-radius: 50%;
+      border: solid 10px var(--ui-04);
+      border-right-color: transparent;
+      border-left-color: transparent;
+      animation: rotateAnimation 2.5s linear infinite;
+    }
+
+    &--inner {
+      background: var(--ui-04);
+      height: 8em;
+      width: 8em;
+      border-radius: 50%;
+    }
+  }
+
+  &__message { font-size: 28px; }
+}

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ClipboardModule } from '@angular/cdk/clipboard';
+import { ObserversModule } from '@angular/cdk/observers';
 
 import { NxTableModule } from '@aposin/ng-aquila/table';
 import { NxPaginationModule } from '@aposin/ng-aquila/pagination';
@@ -25,6 +26,7 @@ import { ConfirmationPopoverTemplateModule } from 'src/app/shared/confirmation-p
 import { CookieFormModule } from 'src/app/shared/cookie-form/cookie-form.module';
 import { EditCookieModalComponent } from './components/edit-cookie-modal/edit-cookie-modal.component';
 import { TableFilterComponent } from './components/table-filter/table-filter.component';
+import { TableRenderObserverComponent } from './components/table-render-observer/table-render-observer.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,12 +37,14 @@ const routes: Routes = [
     HomeComponent,
     EditCookieModalComponent,
     TableFilterComponent,
+    TableRenderObserverComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     ClipboardModule,
+    ObserversModule,
     ConfirmationPopoverTemplateModule,
     CookieFormModule,
     NxTableModule,

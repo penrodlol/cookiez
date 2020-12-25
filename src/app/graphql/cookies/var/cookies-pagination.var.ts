@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { makeVar, ReactiveVar } from '@apollo/client/core';
-import { map, pluck, take } from 'rxjs/operators';
+import { delay, map, pluck, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { CookiesCacheGQL, CookiesCacheResponse } from '../query/cookies-cache.gql';
@@ -68,7 +68,7 @@ export class CookiesPaginationVar {
   init(): void {
     this.cookiesGQL
       .fetch()
-      .pipe(fetchCookies())
+      .pipe(fetchCookies(), delay(2000))
       .subscribe(cookies => {
         cookiesPaginationVar({
           ...cookiesPaginationVar(),
