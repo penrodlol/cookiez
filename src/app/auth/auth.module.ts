@@ -19,8 +19,11 @@ import { NxIconModule } from '@aposin/ng-aquila/icon';
     NxImageModule,
     NxIconModule,
     Auth0Module.forRoot({
-      domain: environment.auth0_domain,
-      clientId: environment.auth0_client,
+      domain: environment.auth0.domain,
+      clientId: environment.auth0.client,
+      audience: environment.auth0.audiance,
+      scope: environment.auth0.scope,
+      token_type: environment.auth0.token_type,
       cacheLocation: 'localstorage',
     }),
   ],
