@@ -12,6 +12,7 @@ import { AppStartupService } from './app-startup.service';
 import { NavigationModule } from './feature/navigation/navigation.module';
 import { GraphQLModule } from './graphql/graphql.module';
 import { SpinnerModule } from './core/spinner/spinner.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SpinnerModule } from './core/spinner/spinner.module';
     NavigationModule,
     SpinnerModule,
     GraphQLModule,
+    AuthModule,
     PerfectScrollbarModule,
   ],
   providers: [

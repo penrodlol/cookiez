@@ -1,0 +1,14 @@
+.account {
+  &__picture {
+    $picture_dimension: 180px;
+  
+    padding: 0 !important;
+    height: $picture_dimension;
+
+    :first-child {
+      width: $picture_dimension;
+      margin: 0 auto;
+      border: solid 3px var(--ui-05);
+    }
+  }
+}

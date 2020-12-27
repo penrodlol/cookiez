@@ -23,8 +23,18 @@
   &-header {
     &-cell {
       border-width: 2px !important;
-      &:first-child { padding-left: $table-padding; }
-      &:last-child { padding-right: $table-padding; }
+      &:first-child { padding-left: $table-padding !important; }
+      &:last-child { padding-right: $table-padding !important; }
+    }
+  }
+
+  &-button {
+    &--primary {
+      nx-icon {
+        color: var(--button-primary-text-color) !important;
+        font-size: var(--font-s) !important;
+        margin-left: 5px !important;
+      }
     }
   }
 }

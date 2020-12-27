@@ -1,0 +1,33 @@
+<ng-container *ngIf="(user$ | async) as user">
+  <div
+    class="account"
+    fxLayout="column"
+    fxLayoutGap="5px">
+    <figure
+      class="account__picture"
+      nxFigure="rounded">
+      <img
+        [src]="user.picture"
+        alt="User Image"/>
+    </figure>
+    <h3 class="nx-margin-top-m nx-margin-bottom-0">
+      {{user.name || user.nickname}}
+    </h3>
+    <h5 class="nx-margin-0">
+      {{user.email}}
+    </h5>
+    <hr
+      class="nx-margin-y-s"
+      [style.border]="'solid 1px var(--ui-05)'">
+    <button
+      nxButton="small-medium"
+      type="button"
+      (click)="logout()">
+      Logout
+      <nx-icon
+        name="logout"
+        style.color="var(--button-primary-text-color)">
+      </nx-icon>
+    </button>
+  </div>
+</ng-container>

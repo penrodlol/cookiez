@@ -10,9 +10,8 @@ import { ConfigurationComponent } from '../../configuration/components/configura
 export class NavigationComponent {
   private readonly CONFIGURATION_MODAL_WIDTH = '95vw';
 
-  actions: ReadonlyArray<{icon: string, label: string}> = [
-    { icon: 'home', label: 'Home' },
-    { icon: 'user', label: 'Profile' },
+  actions: ReadonlyArray<{icon: string, label: string, route: string}> = [
+    { icon: 'home', label: 'Home', route: 'home' },
   ];
 
   constructor(
@@ -22,7 +21,6 @@ export class NavigationComponent {
   onConfiguration(): void {
     this.dialog.open(ConfigurationComponent, {
       showCloseIcon: true,
-      width: this.CONFIGURATION_MODAL_WIDTH,
       maxWidth: this.CONFIGURATION_MODAL_WIDTH,
       minWidth: this.CONFIGURATION_MODAL_WIDTH,
     });

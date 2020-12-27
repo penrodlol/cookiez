@@ -8,6 +8,9 @@
       ],
       "@home/*": [
         "src/app/feature/home/*"
+      ],
+      "@auth/*": [
+        "src/app/auth/*"
       ]
     },
     "outDir": "./dist/out-tsc",

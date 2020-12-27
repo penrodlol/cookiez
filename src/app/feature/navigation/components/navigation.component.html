@@ -3,11 +3,23 @@
   class="cookiez-navigation"
   resizeable="false">
   <button
-      class="cookiez-navigation__actions"
-      *ngFor="let action of actions"
-      nxAction
-      routerLink="./"
-      type="button">
+    class="cookiez-navigation__actions"
+    nxAction
+    type="button"
+    nxPopoverDirection="right"
+    nxPopoverTrigger="click"
+    nxPopoverModal="true"
+    [nxPopoverTriggerFor]="account">
+    <nx-icon
+      nxActionIcon
+      name="user">
+    </nx-icon>
+  </button>
+  <button
+    class="cookiez-navigation__actions"
+    *ngFor="let action of actions"
+    nxAction
+    type="button">
     <nx-icon
       nxActionIcon
       [name]="action.icon">
@@ -32,3 +44,7 @@
     </button>
   </nx-sidebar-footer>
 </nx-sidebar>
+
+<nx-popover #account>
+  <cookiez-account></cookiez-account>
+</nx-popover>
