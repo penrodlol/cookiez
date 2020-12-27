@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -10,6 +11,7 @@ export class AccountComponent {
   user$ = this.auth.user$;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private auth: AuthService,
   ) { }
 
@@ -18,7 +20,8 @@ export class AccountComponent {
   }
 
   logout(): void {
-    this.auth.logout();
+    const returnTo = this.document.location.origin;
+    this.auth.logout({ returnTo });
   }
 
 }
