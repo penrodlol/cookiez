@@ -11,7 +11,7 @@ const authLink = (auth: AuthService) => setContext(async () => {
   const token = await auth.getAccessTokenSilently().toPromise();
   return !token ? {} : {
     headers: {
-      Authorization: `Bearer ${token}a`,
+      Authorization: `Bearer ${token}`,
     },
   };
 });
