@@ -7,6 +7,7 @@ export const ICONS = [
   'edit',
   'tick',
   'x',
+  'exclamation-circle',
 ] as const;
 
 export type Icon = typeof ICONS[number];
