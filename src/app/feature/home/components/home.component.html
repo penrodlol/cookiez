@@ -29,74 +29,97 @@
           </th>
           </tr>
         </thead>
-        <tbody #home>
-          <ng-container *ngFor="let item of pagination.collection">
-            <tr nxTableRow>
-              <td
-                nxTableCell
-                fxFlex="8"
-                fxLayoutAlign="start center">
-                <section
-                  fxLayout="row"
-                  fxLayoutGap="10px">
-                  <button
-                    nxIconButton="tertiary small" 
-                    aria-label="Edit Cookie"
-                    class="nx-margin-0"
-                    type="button"
-                    (click)="onEdit(item)">
-                    <nx-icon name="edit"></nx-icon>
-                  </button>
-                  <ng-container
-                    *ngTemplateOutlet="deleteCookie; context: { id: item.id }">
-                  </ng-container>
-                </section>
-              </td>
-              <td
-                nxTableCell
-                fxFlex="26"
-                fxLayoutAlign="start center">
-                {{item.environment | uppercase}}
-              </td>
-              <td
-                nxTableCell
-                fxFlex="26"
-                fxLayoutAlign="start center">
-                {{item.type | uppercase}}
-              </td>
-              <td
-                nxTableCell
-                fxFlex="40">
-                <div class="home__snippet">
+        <tbody #cookies>
+          <ng-container *ngIf="pagination.collection">
+            <ng-container *ngFor="let item of pagination.collection">
+              <tr nxTableRow>
+                <td
+                  nxTableCell
+                  fxFlex="8"
+                  fxLayoutAlign="start center">
                   <section
-                    nxTooltip="Copy to Clipboard"
-                    nxTooltipPosition="left"
-                    [line-truncation]="2"
-                    [cdkCopyToClipboard]="item.snippet"
-                    (click)="copiedToClipboard()">
-                    {{item.snippet}}
+                    fxLayout="row"
+                    fxLayoutGap="10px">
+                    <button
+                      nxIconButton="tertiary small" 
+                      aria-label="Edit Cookie"
+                      class="nx-margin-0"
+                      type="button"
+                      (click)="onEdit(item)">
+                      <nx-icon name="edit"></nx-icon>
+                    </button>
+                    <ng-container
+                      *ngTemplateOutlet="deleteCookie; context: { id: item.id }">
+                    </ng-container>
                   </section>
-                </div>
-              </td>
-              <td
-                nxTableCell
-                fxFlex="5"
-                fxLayoutAlign="center center">
-                <nx-toggle-button [target]="expandableRow"></nx-toggle-button>
-              </td>
-            </tr>
-            <tr
-              nxExpandableTableRow
-              #expandableRow>
-              <td
-                nxExpandableTableCell
-                fxFlex="100"
-                [style.padding-left.px]=50>
-                <pre [style.white-space]="'pre-line'">
-                  {{item.snippet}}
-                </pre>
-              </td>
-            </tr>
+                </td>
+                <td
+                  nxTableCell
+                  fxFlex="26"
+                  fxLayoutAlign="start center">
+                  {{item.environment | uppercase}}
+                </td>
+                <td
+                  nxTableCell
+                  fxFlex="26"
+                  fxLayoutAlign="start center">
+                  {{item.type | uppercase}}
+                </td>
+                <td
+                  nxTableCell
+                  fxFlex="40">
+                  <div class="home__snippet">
+                    <section
+                      nxTooltip="Copy to Clipboard"
+                      nxTooltipPosition="left"
+                      [line-truncation]="2"
+                      [cdkCopyToClipboard]="item.snippet"
+                      (click)="copiedToClipboard()">
+                      {{item.snippet}}
+                    </section>
+                  </div>
+                </td>
+                <td
+                  nxTableCell
+                  fxFlex="5"
+                  fxLayoutAlign="center center">
+                  <nx-toggle-button [target]="expandableRow"></nx-toggle-button>
+                </td>
+              </tr>
+              <tr
+                nxExpandableTableRow
+                #expandableRow>
+                <td
+                  nxExpandableTableCell
+                  fxFlex="100"
+                  [style.padding-left.px]=50>
+                  <pre [style.white-space]="'pre-line'">
+                    {{item.snippet}}
+                  </pre>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="pagination.collection?.length === 0">
+            <div
+              class="home__no-cookies"
+              fxLayout="column"
+              fxLayoutAlign="center center">
+              <ng-container *ngIf="!(dirty$ | async); else noCookiesMatchFilter">
+                <h1>No Cookiez...</h1>
+                <p class="home__no-cookies--message">
+                  To begin adding some, click on the
+                  (<nx-icon
+                    class="home__no-cookies--message__icon"
+                    name="cog">
+                  </nx-icon>)
+                  located at the bottom left.
+                </p>
+              </ng-container>
+              <ng-template #noCookiesMatchFilter>
+                <h1>No Cookiez match filter...</h1>
+              </ng-template>
+            </div>
           </ng-container>
         </tbody>
       </table>

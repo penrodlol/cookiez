@@ -1,7 +1,12 @@
 <div
   fxLayout="column"
   fxLayoutGap="10px">
-  <h2 nxHeadline="subsection-large">
+  <h2
+    nxHeadline="subsection-large"
+    [ngStyle]="{'color': (disabled$ | async) ?
+      'var(--formfield-disabled-text-color)' :
+      'unset'
+    }">
     Create Cookie
   </h2>
   <cookiez-cookie-form></cookiez-cookie-form>

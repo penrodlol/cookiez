@@ -2,12 +2,35 @@
   class="configuration-table-column"
   fxLayout="column"
   fxLayoutGap="10px">
-  <h2 nxHeadline="subsection-large">
-    {{typename}}s
-  </h2>
+  <div
+    class="nx-margin-0"
+    fxLayout="row"
+    fxLayoutGap="5px"
+    fxLayoutAlign="start center">
+    <h2 nxHeadline="subsection-large">
+      {{typename}}s
+    </h2>
+    <button
+        nxIconButton="tertiary small" 
+        class="nx-margin-0"
+        aria-label="About"
+        type="button"
+        nxPopoverDirection="right"
+        nxPopoverTrigger="click"
+        nxPopoverModal="true"
+        [nxPopoverTriggerFor]="typename === 'Environment' ?
+          aboutEnvironments :
+          aboutTypes">
+        <nx-icon
+          name="question-circle"
+          [style.font-size]="'var(--font-l)'">
+        </nx-icon>
+      </button>
+  </div>
   <div
     class="configuration-table-column__content"
-    fxLayout="row">
+    fxLayout="row"
+    [class.configuration-table-column__content--emphasis]="configuration.length === 0">
     <div
       fxLayout="column"
       fxFill>
@@ -45,3 +68,15 @@
     </div>
   </div>
 </div>
+
+<nx-popover #aboutEnvironments>
+  <p [style.width.px]=250>
+    An 'environment' is an indentifier for where your cookie snippet is to be used (qang, sbng, prod, etc.).
+  </p>
+</nx-popover>
+
+<nx-popover #aboutTypes>
+  <p [style.width.px]=250>
+    A 'type' is an identifier for where within the application your cookie snippet is to be used (messaging, admin, patient, etc.).
+  </p>
+</nx-popover>

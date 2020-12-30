@@ -12,6 +12,7 @@ import { CookieForm } from 'src/app/shared/cookie-form/components/cookie-form.co
 export class ConfigurationCookieFormComponent {
   dirty$ = this.manager.dirtyChanges('cookie');
   valid$ = this.manager.validityChanges('cookie');
+  disabled$ = this.manager.disableChanges('cookie');
 
   constructor(
     private cookiesPaginationVar: CookiesPaginationVar,

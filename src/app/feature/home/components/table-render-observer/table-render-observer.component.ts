@@ -13,7 +13,7 @@ import { SpinnerService } from 'src/app/core/spinner/services/spinner.service';
   `,
 })
 export class TableRenderObserverComponent {
-  @ContentChild('home') home: ElementRef;
+  @ContentChild('cookies') cookies: ElementRef;
   disableRenderObserver = false;
 
   constructor(
@@ -21,7 +21,7 @@ export class TableRenderObserverComponent {
   ) { }
 
   onRender(): void {
-    if (this.home.nativeElement.childElementCount > 0) {
+    if (this.cookies.nativeElement.childElementCount > 0) {
       this.spinnerService.hide();
       this.disableRenderObserver = true;
     }

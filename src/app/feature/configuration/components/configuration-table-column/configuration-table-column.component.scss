@@ -5,6 +5,18 @@
     border-radius: 4px;
     padding: 15px;
 
+    @keyframes fadeIn {
+      0% { border: solid 1px transparent; }
+      25% { border: solid 1px var(--ui-05); }
+      50% { border: solid 1px var(--ui-06); }
+      75% { border: solid 1px var(--ui-05); }
+      100% { border: solid 1px transparent; }
+    }
+
+    &--emphasis {
+      animation: fadeIn ease-in 3s infinite;
+    }
+
     &--separator {
       width: 90%;
       border-top: 1px solid var(--ui-05);

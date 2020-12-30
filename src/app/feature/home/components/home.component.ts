@@ -6,6 +6,8 @@ import { EnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { CookiesPaginationVar } from '../../../graphql/cookies/var/cookies-pagination.var';
 import { EditCookieModalComponent } from './edit-cookie-modal/edit-cookie-modal.component';
+import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
+import { CookieFilterForm } from './table-filter/table-filter.component';
 
 export interface IHeader { name: string; size: number; }
 
@@ -23,10 +25,12 @@ export class HomeComponent implements OnInit {
   ];
 
   pagination$ = this.cookiesPaginationVar.current$;
+  dirty$ = this.manager.dirtyChanges('cookieFilter');
 
   constructor(
     private toast: NxMessageToastService,
     private dialog: NxDialogService,
+    private manager: FormManger<CookieFilterForm>,
     private cookiesPaginationVar: CookiesPaginationVar,
     private environmentsAndTypesVar: EnvironmentsAndTypesVar,
   ) { }

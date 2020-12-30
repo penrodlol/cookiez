@@ -26,7 +26,7 @@ export interface ICookiesPaginationAction {
 
 export const cookiesPaginationVar: ReactiveVar<ICookiesPaginationVar> =
   makeVar({
-    collection: [],
+    collection: null,
     page: 1,
     total: 0,
   });

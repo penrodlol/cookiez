@@ -6,19 +6,20 @@
   <h1 nxHeadline="subsection-large">
     Configuration
   </h1>
-  <div
+  <ng-container *ngIf="(configuration$ | async) as configuration">
+    <div
     fxLayout="row"
     fxLayoutGap="50px">
     <div fxFlex="25">
       <cookiez-configuration-table-column
         typename="Environment"
-        [configuration]="(environments$ | async)">
+        [configuration]="configuration.environments">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex="25">
       <cookiez-configuration-table-column
         typename="Type"
-        [configuration]="(types$ | async)">
+        [configuration]="configuration.types">
       </cookiez-configuration-table-column>
     </div>
     <div fxFlex>
@@ -26,6 +27,7 @@
       </cookiez-configuration-cookie-form>
     </div>
   </div>
+  </ng-container>
 </div>
 <div nxModalActions>
   <button

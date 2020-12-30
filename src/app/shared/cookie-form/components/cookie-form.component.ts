@@ -1,10 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { EnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/var/environments-and-types.var';
+import { EnvironmentsAndTypesVar, IEnvironmentsAndTypesVar } from 'src/app/graphql/environments-and-types/var/environments-and-types.var';
 import { Cookie } from 'src/app/graphql/model/cookie.model';
 import { Observable } from 'rxjs';
-import { Environment } from 'src/app/graphql/model/environment.model';
-import { pluck } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { NgFormsManager as FormManger } from '@ngneat/forms-manager';
 
 export interface CookieForm {
@@ -14,13 +13,18 @@ export interface CookieForm {
 @Component({
   selector: 'cookiez-cookie-form',
   templateUrl: './cookie-form.component.html',
-  styleUrls: ['./cookie-form.component.scss']
+  styleUrls: ['./cookie-form.component.scss'],
 })
 export class CookieFormComponent implements OnInit, OnDestroy {
   @Input() cookie: Cookie | null;
 
-  environments$: Observable<Environment> = this.environmentsAndTypesVar.current$.pipe(pluck('environments'));
-  types$: Observable<Environment> = this.environmentsAndTypesVar.current$.pipe(pluck('types'));
+  readonly configuration$: Observable<IEnvironmentsAndTypesVar> = this.environmentsAndTypesVar
+    .current$
+    .pipe(tap(({ environments, types }) => {
+      environments.length === 0 || types.length === 0 ?
+        this.form.disable() :
+        this.form.enable();
+    }));
 
   form: FormGroup;
 

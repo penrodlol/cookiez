@@ -11,4 +11,18 @@
       margin: 10px;
     }
   }
+
+  &__no-cookies {
+    height: 600px;
+    padding: 10px 40px;
+
+    &--message {
+      font-size: var(--font-s);
+
+      &__icon {
+        font-size: var(--font-l);
+        transform: translateY(4px);
+      }
+    }
+  }
 }

@@ -1,80 +1,82 @@
-<div
-  class="table-filter"
-  fxLayout="row">
-  <h1
-    nxHeadline="subsection-large"
-    fxFlex="10"
-    fxLayoutAlign="start center">
-    Filter:
-  </h1>
-  <form
-    fxFlex
-    fxLayoutGap="30px"
-    [formGroup]="form">
-    <nx-formfield
-      nxFloatLabel="always"
-      nxLabel="Environment"
-      appearance="outline"
-      fxFlex="15">
-      <nx-dropdown
-        formControlName="environment"
-        nxFilterPlaceholder="Type to search environment"
-        [nxShowFilter]="true"
-        style="box-shadow: var(--elevation);">
-        <nx-dropdown-item
-          *ngFor="let environment of (environments$ | async)"
-          [nxValue]="environment.name">
-          {{environment.name}}
-        </nx-dropdown-item>
-      </nx-dropdown>
-    </nx-formfield>
-    <nx-formfield
-      nxFloatLabel="always"
-      nxLabel="Type"
-      appearance="outline"
-      fxFlex="15">
-      <nx-dropdown
-        formControlName="type"
-        nxFilterPlaceholder="Type to search type"
-        [nxShowFilter]="true"
-        style="box-shadow: var(--elevation);">
-        <nx-dropdown-item
-          *ngFor="let type of (types$ | async)"
-          [nxValue]="type.name">
-          {{type.name}}
-        </nx-dropdown-item>
-      </nx-dropdown>
-    </nx-formfield>
-    <nx-formfield
-      appearance="outline"
-      nxLabel="Snippet"
-      nxFloatLabel="always"
-      fxFlex="30">
-      <input
-        nxInput
-        formControlName="snippet">
-    </nx-formfield>
-    <ng-container *ngIf="form.dirty">
-      <div fxLayoutAlign="start center">
-        <button
-          class="nx-margin-top-3xs nx-margin-bottom-0"
-          nxButton="small"
-          type="button"
-          [style.height.px]=40
-          (click)="onSearch()">
-          Search
-        </button>
-      </div>
-      <div fxLayoutAlign="start center">
-        <button
-          class="nx-margin-top-3xs nx-margin-bottom-0"
-          nxButton="small"
-          type="button"
-          [style.height.px]=40
-          (click)="onClear()">
-          Clear
-        </button>
-      </div>
-    </ng-container>
-  </form>
-</div>
+<ng-container *ngIf="(configuration$ | async) as configuration">
+  <div
+    class="table-filter"
+    fxLayout="row">
+    <h1
+      nxHeadline="subsection-large"
+      fxFlex="10"
+      fxLayoutAlign="start center">
+      Filter:
+    </h1>
+    <form
+      fxFlex
+      fxLayoutGap="30px"
+      [formGroup]="form">
+      <nx-formfield
+        nxFloatLabel="always"
+        nxLabel="Environment"
+        appearance="outline"
+        fxFlex="15">
+        <nx-dropdown
+          formControlName="environment"
+          nxFilterPlaceholder="Type to search environment"
+          [nxShowFilter]="true"
+          style="box-shadow: var(--elevation);">
+          <nx-dropdown-item
+            *ngFor="let environment of configuration.environments"
+            [nxValue]="environment.name">
+            {{environment.name}}
+          </nx-dropdown-item>
+        </nx-dropdown>
+      </nx-formfield>
+      <nx-formfield
+        nxFloatLabel="always"
+        nxLabel="Type"
+        appearance="outline"
+        fxFlex="15">
+        <nx-dropdown
+          formControlName="type"
+          nxFilterPlaceholder="Type to search type"
+          [nxShowFilter]="true"
+          style="box-shadow: var(--elevation);">
+          <nx-dropdown-item
+            *ngFor="let type of configuration.types"
+            [nxValue]="type.name">
+            {{type.name}}
+          </nx-dropdown-item>
+        </nx-dropdown>
+      </nx-formfield>
+      <nx-formfield
+        appearance="outline"
+        nxLabel="Snippet"
+        nxFloatLabel="always"
+        fxFlex="30">
+        <input
+          nxInput
+          formControlName="snippet">
+      </nx-formfield>
+      <ng-container *ngIf="form.dirty">
+        <div fxLayoutAlign="start center">
+          <button
+            class="nx-margin-top-3xs nx-margin-bottom-0"
+            nxButton="small"
+            type="button"
+            [style.height.px]=40
+            (click)="onSearch()">
+            Search
+          </button>
+        </div>
+        <div fxLayoutAlign="start center">
+          <button
+            class="nx-margin-top-3xs nx-margin-bottom-0"
+            nxButton="small"
+            type="button"
+            [style.height.px]=40
+            (click)="onClear()">
+            Clear
+          </button>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+</ng-container>
